@@ -6,12 +6,13 @@ class App extends React.Component {
     super(props)
     this.state = {
       pokemons: [],
+      pokemonID: 0,
       search: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
     componentDidMount() {
-    const url = "https://pokeapi.co/api/v2/pokemon/?limit=100"
+    const url = "https://pokeapi.co/api/v2/pokemon/?limit=50"
     fetch(url)
     .then(res => res.json())
     .then(response => this.setState({
@@ -31,7 +32,7 @@ class App extends React.Component {
     <div className="App">
       <Nav />
       <FeatureAndSearch changed={this.handleChange}/>
-      <PokemonGroup pokemon={filterPokemon} />
+      <PokemonGroup pokemon={filterPokemon} id={this.pokemonID}/>
     </div>
   )};
 }
@@ -84,9 +85,16 @@ class PokemonGroup extends React.Component {
 
 
 class PokemonSingle extends React.Component {
+  constructor(props){
+    super(props)
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    alert("This pokemon is "+this.props.pokemonName)
+  }
   render() {
     return (
-      <div className="pokemonName"><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
+      <div className="pokemonName" onClick={this.handleClick}><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
       </div>
     )
   }
