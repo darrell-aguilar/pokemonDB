@@ -6,13 +6,13 @@ class App extends React.Component {
     super(props)
     this.state = {
       pokemons: [],
-      pokemonID: 0,
+      onMainPage: true,
       search: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
     componentDidMount() {
-    const url = "https://pokeapi.co/api/v2/pokemon/?limit=50"
+    const url = "https://pokeapi.co/api/v2/pokemon/?limit=1000"
     fetch(url)
     .then(res => res.json())
     .then(response => this.setState({
@@ -60,8 +60,8 @@ class FeatureAndSearch extends React.Component {
     return (
       <div>
         <div className="main">
-          <div className="feature">
-          </div>
+          {/* <div className="feature">
+          </div> */}
           <div className="searchBar">
             <input className="pokemonSearch" placeholder="Type in PoKemon name to Filter" type="search" onChange={this.props.changed}></input>
           </div>
@@ -94,7 +94,7 @@ class PokemonSingle extends React.Component {
   }
   render() {
     return (
-      <div className="pokemonName" onClick={this.handleClick}><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
+      <div className="pokemonName" onClick={this.handleClick}><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
       </div>
     )
   }

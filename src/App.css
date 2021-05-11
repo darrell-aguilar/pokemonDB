@@ -11,16 +11,22 @@ body {
   width: 100%;
 }
 
+.main {
+  padding-top: 80px;
+}
 .App {
   text-align: center;
 }
 
 .navBar {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
+  font-size: 24px;
   width: 100%;
-  background: rgb(255,162,0,0.5);
+  background: rgb(255,162,0,0.8);
   position: fixed;
+  font-weight: bold;
+  margin-bottom: 20px;
+  top: 0;
 }
 
 .navItems {
@@ -69,6 +75,11 @@ body {
   flex-direction: column;
   width: 350px;
   height: 350px;
+}
+
+.pokemonName hr {
+  width: 80%;
+  align-self: center;
 }
 
 .pokemonList img {
