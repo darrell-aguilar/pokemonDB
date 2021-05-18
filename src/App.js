@@ -1,47 +1,47 @@
 import './App.css';
 import React from 'react';
 import ImageMissing from './images/not-found.png'
+import {useSelector, useDispatch} from 'react-redux'
+import {useEffect} from 'react'
+import {getPokemon} from './reducers/actions/getPokemon' 
+import {checkMainPage} from './reducers/actions/checkMainPage'
+import {searchPokemon} from './reducers/actions/searchPokemon';
+import {getSinglePokemon} from './reducers/actions/getSinglePokemon'
 
-class App extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      pokemons: [],
-      onMainPage: true,
-      search: ''
-    }
-    this.handleChange = this.handleChange.bind(this);
-  }
-    componentDidMount() {
-    const url = "https://pokeapi.co/api/v2/pokemon/?limit=1000"
-    fetch(url)
-    .then(res => res.json())
-    .then(response => this.setState({
-    pokemons: response.results
-    }))
-  }
+function App() {
+  const pokemons = useSelector(state => state.pokemonlist)
+  const search = useSelector(state => state.pokemonsearch)
+  const singlepokemondata = useSelector(state => state.singlepokemondata)
+  const dispatch = useDispatch();
+  const URL = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
 
-  handleChange = (event) => {
-    this.setState({
-      search: event.target.value
-    })
+  useEffect(() => {
+    getPokemonList();
+  },[]);
+  
+  async function getPokemonList()  {
+    const response = await fetch(URL)
+    const data = await response.json()
+    dispatch(getPokemon(data.results))
   }
 
-  render() {
-    const filterPokemon = this.state.pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(this.state.search.toLowerCase()));
-  return (
-    <div className="App">
-      <Nav />
-      <FeatureAndSearch changed={this.handleChange}/>
-      <PokemonGroup pokemon={filterPokemon} id={this.pokemonID}/>
-    </div>
-  )};
+  const handleChange = (event) => {
+      dispatch(searchPokemon(event.target.value))
+  }
+
+  const filterPokemon = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
+    return (
+      <div className="App">
+        <Nav singlepokemondata={singlepokemondata} />
+        {singlepokemondata ==='' && <Search onChange={handleChange} filterPokemon={filterPokemon}/>}
+        {singlepokemondata ==='' && <PokemonGroup pokemon={filterPokemon} singlepokemondata={singlepokemondata}/>}
+      </div>
+    )
 }
 
-class Nav extends React.Component {
-  render() {
-    return (
-      <div>
+function Nav({singlepokemondata}) {
+
+  return (
         <div className="navBar">
           <ul className="navItems">
             <li><a href="#/">Home</a></li>
@@ -50,58 +50,43 @@ class Nav extends React.Component {
             <li><a href="#/">About</a></li>
           </ul>
         </div>
-      </div>
     )
-  }
 }
 
-
-class FeatureAndSearch extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className="main">
-          <div className="searchBar">
-            <input className="pokemonSearch" placeholder="Type in PoKemon name to Filter" type="search" onChange={this.props.changed}></input>
-          </div>
+function Search({onChange, filterPokemon}) {
+  return (
+    <div className="main">
+        <div className="searchBar">
+           <input className="pokemonSearch" placeholder="Type in PoKemon name to Filter" type="search" onChange={onChange}>{console.log()}</input>
         </div>
-       
-      </div>
-    )
-  }
+    </div>
+  )
 }
 
-
-class PokemonGroup extends React.Component {
-  render() {
-    return (
-      <div>
-         <div className="pokemonList">{this.props.pokemon.map(pokemonChar => (<PokemonSingle key={pokemonChar.name} pokemonName={pokemonChar.name}></PokemonSingle>))}</div>
-      </div>
-    )
-  }
+function PokemonGroup({pokemon, singlepokemondata}) {
+  return (
+        <div className="pokemonList">
+           {pokemon.map(pokemonChar => (<PokemonSingle key={pokemonChar.name} pokemonName={pokemonChar.name} singlepokemondata={singlepokemondata}></PokemonSingle>))}
+        </div>
+  )
 }
 
+function PokemonSingle({key, pokemonName, singlepokemondata}) {
+  
+  const dispatch = useDispatch()
 
-class PokemonSingle extends React.Component {
-  constructor(props){
-    super(props)
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    alert("This pokemon is "+this.props.pokemonName)
-  }
-
-  ImageNotFound(img) {
+  function ImageNotFound(img) {
     img.target.src = ImageMissing;
   }
 
-  render() {
-    return (
-      <div className="pokemonName" onClick={this.handleClick}><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} onError={this.ImageNotFound} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
-      </div>
-    )
+  function handleClick() {
+    dispatch(getSinglePokemon(pokemonName))
   }
+
+  return (
+    <div className="pokemonName" ><img onClick={handleClick} alt={`${pokemonName}`} title={`${pokemonName}`} onError={ImageNotFound} src={`https://img.pokemondb.net/artwork/${pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}</div>
+    </div>
+  )
 }
+
 export default App;
