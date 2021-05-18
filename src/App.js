@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import ImageMissing from './images/not-found.png'
 
 class App extends React.Component {
   constructor(props){
@@ -60,8 +61,6 @@ class FeatureAndSearch extends React.Component {
     return (
       <div>
         <div className="main">
-          {/* <div className="feature">
-          </div> */}
           <div className="searchBar">
             <input className="pokemonSearch" placeholder="Type in PoKemon name to Filter" type="search" onChange={this.props.changed}></input>
           </div>
@@ -89,12 +88,18 @@ class PokemonSingle extends React.Component {
     super(props)
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick() {
     alert("This pokemon is "+this.props.pokemonName)
   }
+
+  ImageNotFound(img) {
+    img.target.src = ImageMissing;
+  }
+
   render() {
     return (
-      <div className="pokemonName" onClick={this.handleClick}><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
+      <div className="pokemonName" onClick={this.handleClick}><img alt={`${this.props.pokemonName}`} title={`${this.props.pokemonName}`} onError={this.ImageNotFound} src={`https://img.pokemondb.net/artwork/${this.props.pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{this.props.pokemonName.charAt(0).toUpperCase() + this.props.pokemonName.slice(1)}</div>
       </div>
     )
   }
