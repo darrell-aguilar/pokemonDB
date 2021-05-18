@@ -6,5 +6,3 @@ export const getSinglePokemon = (chosenpokemon) => {
         payload: chosenpokemon
     }
 }
-
-export default getSinglePokemon

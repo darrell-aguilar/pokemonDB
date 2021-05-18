@@ -30,11 +30,18 @@ function App() {
   }
 
   const filterPokemon = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
+  if (singlepokemondata !== '')
+    return (
+      <div className="App">
+      <Nav singlepokemondata={singlepokemondata} />
+      <SinglePokemonData singlepokemondata={singlepokemondata} />
+      </div>
+    )
     return (
       <div className="App">
         <Nav singlepokemondata={singlepokemondata} />
-        {singlepokemondata ==='' && <Search onChange={handleChange} filterPokemon={filterPokemon}/>}
-        {singlepokemondata ==='' && <PokemonGroup pokemon={filterPokemon} singlepokemondata={singlepokemondata}/>}
+        <Search onChange={handleChange} filterPokemon={filterPokemon}/>
+        <PokemonGroup pokemon={filterPokemon} singlepokemondata={singlepokemondata} />
       </div>
     )
 }
@@ -63,17 +70,24 @@ function Search({onChange, filterPokemon}) {
   )
 }
 
-function PokemonGroup({pokemon, singlepokemondata}) {
+function PokemonGroup({pokemon, singlepokemondata, pokemonFullData}) {
   return (
         <div className="pokemonList">
-           {pokemon.map(pokemonChar => (<PokemonSingle key={pokemonChar.name} pokemonName={pokemonChar.name} singlepokemondata={singlepokemondata}></PokemonSingle>))}
+           {pokemon.map(pokemonChar => (<PokemonSingle key={pokemonChar.name} pokemonName={pokemonChar.name} singlepokemondata={singlepokemondata} pokemonFullData={pokemonFullData}></PokemonSingle>))}
         </div>
   )
 }
 
-function PokemonSingle({key, pokemonName, singlepokemondata}) {
+function PokemonSingle({pokemonName, singlepokemondata}) {
   
   const dispatch = useDispatch()
+  const SingleDataURL = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+
+   async function getPokemonData()  {
+    const response = await fetch(SingleDataURL)
+    const data = await response.json()
+    console.log(data)
+  }
 
   function ImageNotFound(img) {
     img.target.src = ImageMissing;
@@ -81,10 +95,21 @@ function PokemonSingle({key, pokemonName, singlepokemondata}) {
 
   function handleClick() {
     dispatch(getSinglePokemon(pokemonName))
+    getPokemonData();
   }
 
   return (
-    <div className="pokemonName" ><img onClick={handleClick} alt={`${pokemonName}`} title={`${pokemonName}`} onError={ImageNotFound} src={`https://img.pokemondb.net/artwork/${pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}</div>
+    <div className="pokemonName" ><img onClick={handleClick} key={pokemonName} alt={`${pokemonName}`} title={`${pokemonName}`} onError={ImageNotFound} src={`https://img.pokemondb.net/artwork/${pokemonName}.jpg`}/><br/><hr/><br/><div className="pokemonTitle">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}</div>
+    </div>
+  )
+}
+
+
+function SinglePokemonData({singlepokemondata, pokemonFullData}) {
+
+  return (
+    <div className="main">
+      <button className='back_to_home'>Back</button>
     </div>
   )
 }
