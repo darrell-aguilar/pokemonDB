@@ -1,7 +1,7 @@
 import checkMainPageReducer from './onmainpage'
 import pokemonListReducer from './pokemonlist'
 import pokemonSearchReducer from './search'
-import getSinglePokemonData from './getSinglePokemonData'
+import getSinglePokemonDataReducer from './getSinglePokemonData'
 import {combineReducers} from 'redux'
 
 const initial_state = {
@@ -15,7 +15,7 @@ const allReducers = combineReducers({
     mainpage: checkMainPageReducer,
     pokemonlist: pokemonListReducer,
     pokemonsearch: pokemonSearchReducer,
-    singlepokemondata: getSinglePokemonData
+    singlepokemondata: getSinglePokemonDataReducer
 });
 
 export default allReducers;
