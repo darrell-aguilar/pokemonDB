@@ -1,20 +1,20 @@
 import checkMainPageReducer from './onmainpage'
 import pokemonListReducer from './pokemonlist'
 import pokemonSearchReducer from './search'
+import getSinglePokemonNameReducer from './getSinglePokemonName'
 import getSinglePokemonDataReducer from './getSinglePokemonData'
 import {combineReducers} from 'redux'
 
 const initial_state = {
-    mainpage: true,
     pokemonlist: [],
     pokemonsearch: '',
-    singlepokemondata: ''
+    singlepokemonname: {}
 }
 
 const allReducers = combineReducers({
-    mainpage: checkMainPageReducer,
     pokemonlist: pokemonListReducer,
     pokemonsearch: pokemonSearchReducer,
+    singlepokemonname: getSinglePokemonNameReducer,
     singlepokemondata: getSinglePokemonDataReducer
 });
 

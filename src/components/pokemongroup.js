@@ -7,7 +7,7 @@ function PokemonGroup(props) {
     
     return (
           <div className="pokemonList">
-             {filterPokemon.map(pokemonChar => (<PokemonCard key={pokemonChar.name} pokemonName={pokemonChar.name}></PokemonCard>))}
+             {filterPokemon.map((pokemonChar) => (<PokemonCard key={pokemonChar.name} pokemonName={pokemonChar.name} index={pokemonChar.url.slice(34, -1)}></PokemonCard>))}
           </div>
     )
 }
@@ -20,3 +20,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(PokemonGroup)
+

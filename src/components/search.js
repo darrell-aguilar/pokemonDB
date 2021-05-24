@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {useEffect} from 'react';
 import {search} from '../reducers/search';
 import {GET_POKEMON} from '../reducers/pokemonlist'
+import PokemonGroup from './pokemongroup'
 
 function Search(props){
 
@@ -9,7 +10,7 @@ function Search(props){
     getPokemonList();
   },[]);
 
-  const URL = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
+  const URL = 'https://pokeapi.co/api/v2/pokemon/?limit=20'
   
   async function getPokemonList()  {
     const response = await fetch(URL)
@@ -26,6 +27,7 @@ return (
           <div className="searchBar">
              <input className="pokemonSearch" placeholder="Type in PoKemon name to Filter" type="search" onChange={handleChange}></input>
           </div>
+          <PokemonGroup />
       </div>
     )
 }

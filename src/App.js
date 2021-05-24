@@ -1,32 +1,35 @@
 import './App.css';
 import React from 'react';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Nav from './components/nav'
 import Search from './components/search'
-import PokemonGroup from './components/pokemongroup'
-import SinglePokemonData from './components/singlepokemondata'
+import SinglePokemonName from './components/singlepokemonname'
 
 function App(props) {
-  
-  if (props.singlepokemondata !== '')
     return (
-      <div className="App">
-      <Nav />
-      <SinglePokemonData />
-      </div>
+      <Router>
+        <div className="App">
+          <Nav />
+            <Switch>
+              <Route path="/" exact component={Search}/>
+              <Route path="/:id" component={SinglePokemonName}/>
+            </Switch>
+        </div>
+      </Router>
     )
-    return (
-      <div className="App">
-        <Nav />
-        <Search />
-        <PokemonGroup />
-      </div>
-    )
+    // return (
+    //   <div className="App">
+    //     <Nav />
+    //     <Search />
+    //     <PokemonGroup />
+    //   </div>
+    // )
 }
 
 const mapStateToProps = (state) => {
   return {
-    singlepokemondata: state.singlepokemondata
+    singlepokemonname: state.singlepokemonname
   }
 }
 

@@ -5,6 +5,7 @@
 
 body {
   width: 100%;
+  font-family: 'Playfair Display', serif;
 }
 
 #root {
@@ -14,6 +15,7 @@ body {
 .main {
   padding-top: 80px;
 }
+
 .App {
   text-align: center;
 }
@@ -22,7 +24,8 @@ body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 24px;
   width: 100%;
-  background: rgb(255,162,0,0.8);
+  height: 67.5px;
+  background: rgb(236, 167, 48);
   position: fixed;
   font-weight: bold;
   margin-bottom: 20px;
@@ -48,10 +51,6 @@ body {
   color: white;
 } 
 
-.feature {
-  height: 20vw;
-}
-
 .pokemonSearch {
   justify-content: center;
   width: 300px;
@@ -69,12 +68,20 @@ body {
   height: 30px;
 }
 
+.pokemonTitle {
+  padding-bottom: 20px;
+}
+
 .pokemonName {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 300px;
   height: 350px;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: rgba(226, 221, 221, 0.726);
+  margin: 10px;
+  padding: 5px;
 }
 
 .pokemonName hr {
@@ -83,9 +90,10 @@ body {
 }
 
 .pokemonList img {
-  width: 275px;
-  height: 275px;
+  width: 200px;
+  height: 200px;
   margin: auto;
+  cursor: pointer;
 }
 
 .pokemonList {
@@ -102,6 +110,16 @@ body {
   height: 40px;
   background-color: rgb(30, 143, 163);
   border-radius: 10px;
+}
+
+.pokemonInfo {
+  padding: 30px 0 0 0;
+  font-weight: bold;
+}
+
+.pokemonInfo img {
+  height: 300px;
+  width: 300px;
 }
 
 @media screen and (max-width: 650px) {

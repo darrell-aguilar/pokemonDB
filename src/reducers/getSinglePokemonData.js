@@ -1,9 +1,9 @@
-export const clickedPokemon = 'clickedPokemon';
+export const getSinglePokemonData = 'getSinglePokemonData';
 
-const getSinglePokemonDataReducer = (state = '', action) => {
+const getSinglePokemonDataReducer = (state = {}, action) => {
     switch(action.type) {
-        case clickedPokemon:
-            return action.payload
+        case getSinglePokemonData:
+            return {...action.payload}
         default:
             return state
     }
