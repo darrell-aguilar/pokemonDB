@@ -10,7 +10,12 @@ function ViewPokemonData(props) {
     return (
     <div className="pokemonInfo">
         {props.dataFetched ? <p>Data is loading...</p> : 
-            <div><img onError={ImageNotFound} src={props.singlepokemondata.sprites.other.dream_world.front_default} alt={props.singlepokemondata.name}/><h3>{"#" + props.singlepokemondata.id}</h3><h3>{props.singlepokemondata.name.charAt(0).toUpperCase() + props.singlepokemondata.name.slice(1)}</h3></div>}
+            <div><img src={`${props.singlepokemondata.sprites.other.dream_world.front_default}`} alt={props.singlepokemondata.name} onError={ImageNotFound}/><h2>{"#" + props.singlepokemondata.id}</h2><h2>{props.singlepokemondata.name.charAt(0).toUpperCase() + props.singlepokemondata.name.slice(1)}</h2>
+                <div>
+                    <h4>Height: {props.singlepokemondata.height}</h4>
+                    <h4>Weight: {props.singlepokemondata.weight}</h4>
+                </div>
+            </div>}
     </div>
     )
 }

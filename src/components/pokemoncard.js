@@ -1,7 +1,6 @@
 import ImageMissing from '../images/not-found.png'
 import {connect} from 'react-redux'
 import {clickedPokemon} from '../reducers/getSinglePokemonName'
-import SinglePokemonName from './singlepokemonname'
 import {Link} from 'react-router-dom'
 
 function PokemonCard(props) {

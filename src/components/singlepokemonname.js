@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {search} from '../reducers/search'
 import {getSinglePokemonData} from '../reducers/getSinglePokemonData'
 import ViewPokemonData from './viewpokemondata'
 
@@ -14,15 +15,20 @@ useEffect(() => {
   getPokemonData()
 }, [])
 
-async function getPokemonData()  {
+  async function getPokemonData()  {
   const response = await fetch(URL)
   const data = await response.json()
   props.fetchedSinglePokemonData(data)
   setDataFetched(false)
   }
+
+  const handleClick = () => {
+    props.resetPokemonFilter('')
+  }
+
     return (
         <div className="main">
-          <Link to={"/"}><button className='back_to_home'>Back</button></Link>
+          <Link to={"/"}><button onClick={handleClick} className='buttonFormat'>Back</button></Link>
           <ViewPokemonData dataFetched={dataFetched}/>
         </div>
       )
@@ -35,9 +41,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps= (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchedSinglePokemonData: (fetchedData) => {dispatch({type:getSinglePokemonData, payload:fetchedData})}
+    fetchedSinglePokemonData: (fetchedData) => {dispatch({type:getSinglePokemonData, payload:fetchedData})},
+    resetPokemonFilter: (emptyString) => {dispatch({type:search, payload: emptyString})}
   }
 }
 
