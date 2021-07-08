@@ -14,7 +14,9 @@ function PokemonCard(props) {
     }
   
     return (
-      <div className="pokemonName"><Link to={`/${props.pokemonName}`}><img onClick={handleClick} key={props.pokemonName} alt={`${props.pokemonName}`} title={`${props.pokemonName}`} onError={ImageNotFound} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.index}.svg`}/></Link><br/><br/>
+      <div className="pokemonName"><Link to={`/${props.pokemonName}`}>
+        <div className="pokemon-image-container"><img onClick={handleClick} key={props.pokemonName} alt={`${props.pokemonName}`} title={`${props.pokemonName}`} onError={ImageNotFound} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.index}.png`}/>
+        </div></Link><br/><br/>
         <div>{"#" + (props.index)}
         </div>
         <div className="pokemonTitle">{props.pokemonName.charAt(0).toUpperCase() + props.pokemonName.slice(1)}

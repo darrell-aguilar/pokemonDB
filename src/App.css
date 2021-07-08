@@ -82,12 +82,19 @@ body {
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 350px;
+  height: 300px;
   border-style: solid;
   border-radius: 20px;
   border-color: rgba(226, 221, 221, 0.726);
   margin: 10px;
   padding: 5px;
+}
+
+.pokemon-image-container {
+  display: block;
+  margin: auto;
+  width: 200px;
+  height: 200px;
 }
 
 .pokemonName hr {
@@ -96,8 +103,12 @@ body {
 }
 
 .pokemonList img {
-  width: 200px;
-  height: 200px;
+  /* width: 200px;
+  height: 200px; */
+  /* justify-content: center;
+  align-items: center; */
+  display: block;
+  width: 70%;
   margin: auto;
   cursor: pointer;
   padding: 30px;
