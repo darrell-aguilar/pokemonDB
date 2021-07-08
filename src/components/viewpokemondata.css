@@ -3,9 +3,17 @@ padding: 30px 0 0 0;
 font-weight: bold;
 }
 
+.img-container {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
 .pokemonInfo img {
-height: 300px;
-width: 300px;
+    width: 100%;
+    height: auto;
 }
 
 .pokemonTypesContainer {
@@ -93,4 +101,19 @@ background-color: #705848;
 
 .fairy {
 background-color: #EF99AC;
+}
+
+@media screen and (max-width: 360px) {
+    .pokemonTypesContainer {
+      flex-direction: column;
+      width: 50vw;
+      }
+  
+    .pokemonType {
+      margin-bottom: 8px;
+    }
+
+    .img-container {
+        width: 85vw;
+    }
 }
