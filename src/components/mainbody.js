@@ -7,7 +7,7 @@ import {isLoading} from '../reducers/isLoading';
 import PokemonGroup from './pokemongroup'
 
 
-function Search(props){
+function MainBody(props){
 
   useEffect(() => {
     if (props.pokemonlist.length === 0)
@@ -74,4 +74,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(MainBody)

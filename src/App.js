@@ -3,8 +3,8 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Nav from './components/nav'
-import Search from './components/search'
-import SinglePokemonName from './components/singlepokemonname'
+import MainBody from './components/mainbody'
+import SinglePokemonName from './components/clickedpokemon'
 
 function App(props) {
     return (
@@ -12,7 +12,7 @@ function App(props) {
         <div className="App">
           <Nav />
             <Switch>
-              <Route path="/" exact component={Search}/>
+              <Route path="/" exact component={MainBody}/>
               <Route path="/:id" component={SinglePokemonName}/>
             </Switch>
         </div>

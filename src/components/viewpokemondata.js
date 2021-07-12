@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {connect} from 'react-redux'
 import ImageMissing from '../images/not-found.png'
 import './viewpokemondata.css'
@@ -7,7 +8,7 @@ function ViewPokemonData(props) {
     function ImageNotFound(img) {
         img.target.src = ImageMissing;
       } 
-
+      
     return (
     <div className="pokemonInfo">
         {props.dataFetched ? <p>Data is loading...</p> : 

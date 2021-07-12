@@ -5,29 +5,39 @@ import {search} from '../reducers/search'
 import {getSinglePokemonData} from '../reducers/getSinglePokemonData'
 import ViewPokemonData from './viewpokemondata'
 
-function SinglePokemonName(props, {match}) {
+function GetClickedPokemonData(props, {match}) {
 
 const URL = `https://pokeapi.co/api/v2/pokemon/${props.match.params.id}`
 
 const [dataFetched, setDataFetched] = useState(true)
+const [EvoChain, setEvoChain] = useState('');  
+
+const GetSpeciesURL = `https://pokeapi.co/api/v2/pokemon-species/${props.singlepokemondata.id}`;
 
 useEffect(() => {
   getPokemonData()
 }, [])
 
-  async function getPokemonData()  {
-  const response = await fetch(URL)
-  const data = await response.json()
-  props.fetchedSinglePokemonData(data)
-  setDataFetched(false)
-  }
+async function getPokemonData()  {
+const response = await fetch(URL)
+const data = await response.json()
+props.fetchedSinglePokemonData(data)
+await getEvolutionChain();
+setDataFetched(false)
+}
 
-  const handleClick = () => {
-    props.resetPokemonFilter('')
-  }
+async function getEvolutionChain() {
+const response = await fetch(GetSpeciesURL)
+const data = await response.json()
+setEvoChain(data)
+}
+
+const handleClick = () => {
+  props.resetPokemonFilter('')
+}
 
     return (
-        <div className="main">
+        <div className="main">{console.log(EvoChain)}
           <Link to={"/"}><button onClick={handleClick} className='buttonFormat'>Back</button></Link>
           <ViewPokemonData dataFetched={dataFetched}/>
         </div>
@@ -48,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SinglePokemonName)
+export default connect(mapStateToProps, mapDispatchToProps)(GetClickedPokemonData)
