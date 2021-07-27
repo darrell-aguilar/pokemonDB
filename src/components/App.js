@@ -1,10 +1,10 @@
-import './App.css';
+import '../css/App.css';
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-import Nav from './components/nav'
-import MainBody from './components/mainbody'
-import SinglePokemonName from './components/clickedpokemon'
+import Nav from './Nav'
+import MainBody from './MainBody'
+import PokemonView from './PokemonView'
 
 function App(props) {
     return (
@@ -13,7 +13,7 @@ function App(props) {
           <Nav />
             <Switch>
               <Route path="/" exact component={MainBody}/>
-              <Route path="/:id" component={SinglePokemonName}/>
+              <Route path="/:id" component={PokemonView}/>
             </Switch>
         </div>
       </Router>

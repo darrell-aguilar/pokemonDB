@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import {useEffect} from 'react';
-import {search} from '../reducers/search';
+import {SEARCH} from '../reducers/Search';
 import {GET_POKEMON, GET_MORE_POKEMON} from '../reducers/pokemonlist'
 import {offsetDataChange} from '../reducers/offsetData'
-import {isLoading} from '../reducers/isLoading';
-import PokemonGroup from './pokemongroup'
+import {LOADING} from '../reducers/Loading';
+import PokemonGroup from './PokemonGroup'
 
 
 function MainBody(props){
@@ -12,7 +12,7 @@ function MainBody(props){
   useEffect(() => {
     if (props.pokemonlist.length === 0)
       getPokemonList();
-  },[]);
+  });
 
   var URL = `https://pokeapi.co/api/v2/pokemon/?limit=${props.offset}`
   
@@ -37,7 +37,7 @@ function MainBody(props){
   }
 
 
-if(props.isloading === true)
+if(props.loading === true)
 return (
   <div className="main">
     <h3>Data is being fetched...</h3>
@@ -59,18 +59,18 @@ const mapStateToProps = (state) => {
   return {
     pokemonlist: state.pokemonlist,
     offset: state.offsetData,
-    search: state.pokemonsearch,
-    isloading: state.isLoading
+    search: state.PokemonSearch,
+    loading: state.Loading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchPokemon: (searched) => {dispatch({type: search, payload: searched})},
+    searchPokemon: (searched) => {dispatch({type: SEARCH, payload: searched})},
     getPokemon: (pokemonlistobject) => {dispatch({type: GET_POKEMON, payload: pokemonlistobject})},
     getMorePokemon: (updatedpokemonlist) => {dispatch({type: GET_MORE_POKEMON, payload: updatedpokemonlist})},
     setOffsetData: (offsetNumber) => {dispatch({type: offsetDataChange, payload: offsetNumber})},
-    setLoadedState: (loadstate) => {dispatch({type: isLoading, payload: loadstate})}
+    setLoadedState: (loadstate) => {dispatch({type: LOADING, payload: loadstate})}
   }
 }
 

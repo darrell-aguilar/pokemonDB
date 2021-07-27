@@ -1,10 +1,10 @@
 import pokemonListReducer from './pokemonlist'
-import pokemonSearchReducer from './search'
-import getSinglePokemonNameReducer from './getSinglePokemonName'
-import getSinglePokemonDataReducer from './getSinglePokemonData'
+import PokemonSearchReducer from './Search'
 import offsetDataReducer from './offsetData'
 import {combineReducers} from 'redux'
-import isLoadingReducer from './isLoading'
+import LoadingReducer from './Loading'
+import FetchPokemonDataReducer from './FetchPokemonData'
+import FetchPokemonNameReducer from './FetchPokemonName'
 
 const initial_state = {
     pokemonlist: [],
@@ -14,11 +14,11 @@ const initial_state = {
 }
 
 const allReducers = combineReducers({
-    isLoading: isLoadingReducer,
+    Loading: LoadingReducer,
     pokemonlist: pokemonListReducer,
-    pokemonsearch: pokemonSearchReducer,
-    singlepokemonname: getSinglePokemonNameReducer,
-    singlepokemondata: getSinglePokemonDataReducer,
+    PokemonSearch: PokemonSearchReducer,
+    FetchPokemonName: FetchPokemonNameReducer,
+    FetchPokemonData: FetchPokemonDataReducer,
     offsetData: offsetDataReducer
 });
 

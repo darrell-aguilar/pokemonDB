@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import {connect} from 'react-redux'
 import ImageMissing from '../images/not-found.png'
-import './viewpokemondata.css'
+import '../css/PokemonView.css'
 
-function ViewPokemonData(props) {
+function PokemonData(props) {
 
     function ImageNotFound(img) {
         img.target.src = ImageMissing;
@@ -13,19 +12,19 @@ function ViewPokemonData(props) {
     <div className="pokemonInfo">
         {props.dataFetched ? <p>Data is loading...</p> : 
             <div>
-               <div className="img-container"><img src={`${props.singlepokemondata.sprites.other['official-artwork'].front_default}`} alt={props.singlepokemondata.name} onError={ImageNotFound}/>
+               <div className="img-container"><img src={`${props.FetchPokemonData.sprites.other['official-artwork'].front_default}`} alt={props.FetchPokemonData.name} onError={ImageNotFound}/>
                </div>
-               <h2>{"#" + props.singlepokemondata.id}</h2><h2>{props.singlepokemondata.name.charAt(0).toUpperCase() + props.singlepokemondata.name.slice(1)}</h2>
+               <h2>{"#" + props.FetchPokemonData.id}</h2><h2>{props.FetchPokemonData.name.charAt(0).toUpperCase() + props.FetchPokemonData.name.slice(1)}</h2>
                 <div>
                     <div className="pokemonTypesContainer">
-                        {props.singlepokemondata.types.map(type =>
+                        {props.FetchPokemonData.types.map(type =>
                             <div key={type.type.name} className={`pokemonType ${type.type.name}`}>
                                 {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                             </div>
                         )}
                     </div>
-                    <h4>Height: {props.singlepokemondata.height}</h4>
-                    <h4>Weight: {props.singlepokemondata.weight}</h4>
+                    <h4>Height: {props.FetchPokemonData.height}</h4>
+                    <h4>Weight: {props.FetchPokemonData.weight}</h4>
                 </div>
             </div>}
     </div>
@@ -34,8 +33,8 @@ function ViewPokemonData(props) {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        singlepokemondata: state.singlepokemondata
+        FetchPokemonData: state.FetchPokemonData
     }
 }
 
-export default connect(mapStateToProps)(ViewPokemonData)
+export default connect(mapStateToProps)(PokemonData)

@@ -1,12 +1,12 @@
-export const search = 'search';
+export const SEARCH = 'SEARCH';
 
-const pokemonSearchReducer = (state = '', action) => {
+const PokemonSearchReducer = (state = '', action) => {
     switch(action.type) {
-        case search:
+        case SEARCH:
             return action.payload
         default:
             return state
     }
 }
 
-export default pokemonSearchReducer;
+export default PokemonSearchReducer;

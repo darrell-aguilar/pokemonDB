@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
-import {search} from '../reducers/search'
+import {SEARCH} from '../reducers/Search'
 import {connect} from 'react-redux'
+import '../css/Nav.css'
 
 function Nav(props) {
 
@@ -24,7 +25,7 @@ function Nav(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetPokemonFilter: (emptyString) => {dispatch({type:search, payload: emptyString})}
+    resetPokemonFilter: (emptyString) => {dispatch({type:SEARCH, payload: emptyString})}
   }
 }
 
