@@ -1,30 +1,38 @@
 .navBar {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 24px;
-    width: 100%;
-    height: 67.5px;
-    background: rgb(236, 167, 48);
-    position: fixed;
-    font-weight: bold;
-    margin-bottom: 20px;
-    top: 0;
-  }
-  
-  .navItems {
-    display: flex;
-    list-style-type: none;
-    justify-content: center;
-  }
-  
-  .navItems li {
-    padding: 20px 30px;
-  }
-  
-  .navItems a {
-    text-decoration: none;
-    color: Black;
-  }
-  
-  .navItems a:active {
-    color: white;
-  } 
+  font-family: "Courier New", Courier, monospace;
+  font-size: 24px;
+  width: 100%;
+  height: 75px;
+  background: rgb(236, 167, 48);
+  position: fixed;
+  font-weight: bold;
+  margin-bottom: 20px;
+  top: 0;
+}
+
+.navItems {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  margin: auto;
+}
+
+.navItems li {
+  padding: 20px 30px;
+}
+
+.navItems a {
+  text-decoration: none;
+  color: Black;
+}
+
+.navItems a:active {
+  color: white;
+}
+
+#logo {
+  padding-top: 5px;
+  height: 80%;
+}
