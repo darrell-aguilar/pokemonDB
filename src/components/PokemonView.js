@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {SEARCH} from '../reducers/Search'
 import {FETCH_POKEMON_DATA} from '../reducers/FetchPokemonData'
 import PokemonData from './PokemonData'
+import { offsetDataChange } from '../reducers/OffsetData'
 
 function PokemonView(props, {match}) {
 
@@ -37,14 +38,16 @@ const handleClick = () => {
 const mapStateToProps = (state) => {
   return {
     singlepokemonname: state.singlepokemonname,
-    FetchPokemonData: state.FetchPokemonData
+    FetchPokemonData: state.FetchPokemonData,
+    offset: state.offset
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchedSinglePokemonData : (fetchedData) => {dispatch({type:FETCH_POKEMON_DATA, payload:fetchedData})},
-    resetPokemonFilter: (emptyString) => {dispatch({type:SEARCH, payload: emptyString})}
+    resetPokemonFilter: (emptyString) => {dispatch({type:SEARCH, payload: emptyString})},
+    resetOffsetData: (offset) => {dispatch({type: offsetDataChange, payload: offset})}
   }
 }
 

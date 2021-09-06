@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { SEARCH } from "../reducers/Search";
-import { GET_POKEMON, GET_MORE_POKEMON } from "../reducers/pokemonlist";
-import { offsetDataChange } from "../reducers/offsetData";
+import { GET_POKEMON, GET_MORE_POKEMON } from "../reducers/Pokemonlist";
+import { offsetDataChange } from "../reducers/OffsetData";
 import { LOADING } from "../reducers/Loading";
 import PokemonGroup from "./PokemonGroup";
 

@@ -1,17 +1,10 @@
-import pokemonListReducer from './pokemonlist'
+import pokemonListReducer from './Pokemonlist'
 import PokemonSearchReducer from './Search'
-import offsetDataReducer from './offsetData'
+import offsetDataReducer from './OffsetData'
 import {combineReducers} from 'redux'
 import LoadingReducer from './Loading'
 import FetchPokemonDataReducer from './FetchPokemonData'
 import FetchPokemonNameReducer from './FetchPokemonName'
-
-const initial_state = {
-    pokemonlist: [],
-    pokemonsearch: '',
-    singlepokemonname: {},
-    offsetData: 20
-}
 
 const allReducers = combineReducers({
     Loading: LoadingReducer,
