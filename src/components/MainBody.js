@@ -25,12 +25,12 @@ function MainBody(props) {
   const handleChange = (event) => {
     props.searchPokemon(event.target.value);
   };
+
+  const addToOffset = 40;
   const handleClick = () => {
-    URL = `https://pokeapi.co/api/v2/pokemon/?offset=${props.offset}?limit=${
-      props.offset + 20
-    }`;
+    URL = `https://pokeapi.co/api/v2/pokemon/?limit=${addToOffset}&offset=${props.offset}`;
     getPokemonList();
-    props.setOffsetData(props.offset + 20);
+    props.setOffsetData(props.offset + addToOffset);
   };
 
   if (props.loading === true)

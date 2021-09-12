@@ -1,119 +1,119 @@
 .pokemonInfo {
-padding: 30px 0 0 0;
-font-weight: bold;
+  padding: 30px 0 0 0;
+  font-weight: bold;
 }
 
 .img-container {
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin: auto;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
 }
 
 .pokemonInfo img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .pokemonTypesContainer {
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-width: 300px;
-margin: 10px auto 10px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  margin: 10px auto 10px auto;
 }
 
 .pokemonType {
-background-color: red;
-padding: 6px 20px;
-width: 60px;
-border-radius: 10px;
+  background-color: red;
+  padding: 6px 20px;
+  width: 60px;
+  border-radius: 10px;
 }
 
 .normal {
-background-color: #A7A877;
+  background-color: #a7a877;
 }
 
 .fighting {
-background-color: #C13128;
+  background-color: #c13128;
 }
 
 .flying {
-background-color: #A890F0;
+  background-color: #a890f0;
 }
 
 .poison {
-background-color: #9F419F;
+  background-color: #9f419f;
 }
 
 .ground {
-background-color: #B8A038;
+  background-color: #b8a038;
 }
 
 .rock {
-background-color: #B8A038;
+  background-color: #b8a038;
 }
 
 .bug {
-background-color: #A9B720;
+  background-color: #a9b720;
 }
 
 .ghost {
-background-color: #705998;
+  background-color: #705998;
 }
 
 .steel {
-background-color: #B8B8D0;
+  background-color: #b8b8d0;
 }
 
 .fire {
-background-color: #F08130;
+  background-color: #f08130;
 }
 
 .water {
-background-color: #6790F0;
+  background-color: #6790f0;
 }
 
 .grass {
-background-color: #78C84F;
+  background-color: #78c84f;
 }
 
 .electric {
-background-color: #F9CF30;
+  background-color: #f9cf30;
 }
 
 .psychic {
-background-color: #F95887;
+  background-color: #f95887;
 }
 
 .ice {
-background-color: #99D7D8;
+  background-color: #99d7d8;
 }
 
 .dragon {
-background-color: #7138F8;
+  background-color: #7138f8;
 }
 
 .dark {
-background-color: #705848;
+  background-color: #705848;
 }
 
 .fairy {
-background-color: #EF99AC;
+  background-color: #ef99ac;
 }
 
 @media screen and (max-width: 360px) {
-    .pokemonTypesContainer {
-      flex-direction: column;
-      width: 50vw;
-      }
-  
-    .pokemonType {
-      margin-bottom: 8px;
-    }
+  .pokemonTypesContainer {
+    flex-direction: column;
+    width: 50vw;
+  }
 
-    .img-container {
-        width: 85vw;
-    }
+  .pokemonType {
+    margin-bottom: 8px;
+  }
+
+  .img-container {
+    width: 85vw;
+  }
 }

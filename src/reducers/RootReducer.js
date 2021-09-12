@@ -5,6 +5,7 @@ import {combineReducers} from 'redux'
 import LoadingReducer from './Loading'
 import FetchPokemonDataReducer from './FetchPokemonData'
 import FetchPokemonNameReducer from './FetchPokemonName'
+import PokemonEvolutionReducer from './Evolution'
 
 const allReducers = combineReducers({
     Loading: LoadingReducer,
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
     PokemonSearch: PokemonSearchReducer,
     FetchPokemonName: FetchPokemonNameReducer,
     FetchPokemonData: FetchPokemonDataReducer,
-    offsetData: offsetDataReducer
+    offsetData: offsetDataReducer,
+    Evolution: PokemonEvolutionReducer
 });
 
 export default allReducers;
