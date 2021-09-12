@@ -33,10 +33,25 @@ async function getPokemonData()  {
 
     var evolutionArray = [];
     var evolutionEndpoint = evolutionChaindata.chain;
+
     do {
-      evolutionArray.push({"name" : evolutionEndpoint.species.name})
+      var evolutionDetails = evolutionEndpoint['evolution_details'][0];
+
+      evolutionArray.push({
+        "name" : evolutionEndpoint.species.name,
+        "evolves_at" : !evolutionDetails ? 1 : evolutionDetails.min_level == null ? "N/A" : evolutionDetails.min_level,
+        "pokemon_id": evolutionEndpoint.species.url.slice(42, evolutionEndpoint.species.url.length - 1)
+      })
+      if (evolutionEndpoint['evolves_to'].length > 1) {
+        for (var pokemonCount = 1; pokemonCount < evolutionEndpoint["evolves_to"].length; pokemonCount++) {
+          evolutionArray.push({
+            "name" : evolutionEndpoint['evolves_to'][pokemonCount].species.name,
+            "evolves_at" : evolutionEndpoint['evolves_to'][pokemonCount] ? 1 : evolutionEndpoint['evolves_to']['min_level']
+          })
+        }
+      }
       evolutionEndpoint = evolutionEndpoint['evolves_to'][0];
-    } while (!!evolutionEndpoint && evolutionEndpoint.hasOwnProperty("evolves_to"));
+    } while (evolutionEndpoint && evolutionEndpoint.hasOwnProperty("evolves_to"));
 
     props.addEvolutionChain(evolutionArray)
     props.fetchedSinglePokemonData(data)

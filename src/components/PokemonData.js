@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import ImageMissing from "../images/not-found.png";
 import "../css/PokemonView.css";
+import EvolutionChart from '../components/EvolutionChart'
 
 function PokemonData(props) {
   function ImageNotFound(img) {
@@ -43,8 +44,7 @@ function PokemonData(props) {
               </div>
               <h4>Height: {props.FetchPokemonData.height}</h4>
               <h4>Weight: {props.FetchPokemonData.weight}</h4>
-              <h4>Pokemon Evolution Chain</h4>
-                      {[props.Evolution.map(e => <h5 key={e.name}>{e.name.charAt(0).toUpperCase() + e.name.slice(1, e.name.length)}</h5>)]}
+              <EvolutionChart />
             </div>
           </div>
         ) : (<p>Fetching data from API...</p>)}
