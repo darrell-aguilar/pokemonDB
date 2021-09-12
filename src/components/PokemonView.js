@@ -46,7 +46,8 @@ async function getPokemonData()  {
         for (var pokemonCount = 1; pokemonCount < evolutionEndpoint["evolves_to"].length; pokemonCount++) {
           evolutionArray.push({
             "name" : evolutionEndpoint['evolves_to'][pokemonCount].species.name,
-            "evolves_at" : evolutionEndpoint['evolves_to'][pokemonCount] ? 1 : evolutionEndpoint['evolves_to']['min_level']
+            "evolves_at" : evolutionEndpoint['evolves_to'][pokemonCount] ? 1 : evolutionEndpoint['evolves_to']['min_level'],
+            "pokemon_id": evolutionEndpoint['evolves_to'][pokemonCount].species.url.slice(42, evolutionEndpoint.species.url.length - 1)
           })
         }
       }
