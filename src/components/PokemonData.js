@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import ImageMissing from "../images/not-found.png";
 import "../css/PokemonView.css";
 import EvolutionChart from '../components/EvolutionChart'
+import Stats from "../components/Stats";
 
 function PokemonData(props) {
   function ImageNotFound(img) {
@@ -18,34 +19,41 @@ function PokemonData(props) {
       <div className="pokemonInfo">
         {props.dataFetched ? (
           <div>
-            <div className="img-container">
-              <img
-                src={`${props.FetchPokemonData.sprites.other["official-artwork"].front_default}`}
-                alt={props.FetchPokemonData.name}
-                onError={ImageNotFound}
-              />
-            </div>
-            <h2>{"#" + props.FetchPokemonData.id}</h2>
-            <h2>
-              {props.FetchPokemonData.name.charAt(0).toUpperCase() +
-                props.FetchPokemonData.name.slice(1)}
-            </h2>
-            <div>
-              <div className="pokemonTypesContainer">
-                {props.FetchPokemonData.types.map((type) => (
-                  <div
-                    key={type.type.name}
-                    className={`pokemonType ${type.type.name}`}
-                  >
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </div>
-                ))}
+            <div className="pokemon-data-container">
+              <div className="pokemon-name">
+                <h1>
+                  {props.FetchPokemonData.name.charAt(0).toUpperCase() +
+                    props.FetchPokemonData.name.slice(1)}
+                </h1>
+                <h1>{"#" + props.FetchPokemonData.id}</h1>
               </div>
-              <h4>Height: {props.FetchPokemonData.height}</h4>
-              <h4>Weight: {props.FetchPokemonData.weight}</h4>
-              <EvolutionChart />
+              <div className="img-data">
+                <div className="img-container">
+                  <img
+                    src={`${props.FetchPokemonData.sprites.other["official-artwork"].front_default}`}
+                    alt={props.FetchPokemonData.name}
+                    onError={ImageNotFound}
+                  />
+                </div>
+                <div className="classdata">
+                  <h4>Height: {props.FetchPokemonData.height}</h4>
+                  <h4>Weight: {props.FetchPokemonData.weight}</h4>
+                  <div className="pokemonTypesContainer">
+                    {props.FetchPokemonData.types.map((type) => (
+                      <div
+                        key={type.type.name}
+                        className={`pokemonType ${type.type.name}`}
+                      >
+                        {type.type.name.charAt(0).toUpperCase() +
+                          type.type.name.slice(1)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <Stats />
+              </div>
             </div>
+            <EvolutionChart />
           </div>
         ) : (<p>Fetching data from API...</p>)}
       </div>

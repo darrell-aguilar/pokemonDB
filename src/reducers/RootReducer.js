@@ -6,6 +6,7 @@ import LoadingReducer from './Loading'
 import FetchPokemonDataReducer from './FetchPokemonData'
 import FetchPokemonNameReducer from './FetchPokemonName'
 import PokemonEvolutionReducer from './Evolution'
+import FetchPokemonStatsReducer from './PokemonStats'
 
 const allReducers = combineReducers({
     Loading: LoadingReducer,
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
     FetchPokemonName: FetchPokemonNameReducer,
     FetchPokemonData: FetchPokemonDataReducer,
     offsetData: offsetDataReducer,
-    Evolution: PokemonEvolutionReducer
+    Evolution: PokemonEvolutionReducer,
+    Stats: FetchPokemonStatsReducer
 });
 
 export default allReducers;

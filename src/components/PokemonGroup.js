@@ -35,7 +35,7 @@ export function PokemonCard(props) {
   
     return (
       <div className="pokemonName"><Link to={`/${props.pokemonName}`}>
-        <div className="pokemon-image-container"><img onClick={handleClick} key={props.pokemonName} alt={`${props.pokemonName}`} title={`${props.pokemonName}`} onError={ImageNotFound} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.index}.png`}/>
+        <div className="pokemon-image-container"><img onClick={handleClick} key={props.pokemonName} alt={`${props.pokemonName}`} title={`${props.pokemonName.charAt(0).toUpperCase() + props.pokemonName.slice(1)}`} onError={ImageNotFound} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.index}.png`}/>
         </div></Link><br/><br/>
         <div>{"#" + (props.index)}
         </div>

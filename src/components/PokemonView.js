@@ -7,6 +7,7 @@ import {FETCH_POKEMON_DATA} from '../reducers/FetchPokemonData'
 import { POKEMON_EVOLUTION } from '../reducers/Evolution'
 import { offsetDataChange } from '../reducers/OffsetData'
 import {FETCH_POKEMON_NAME} from '../reducers/FetchPokemonName'
+import { FETCH_POKEMON_STATS } from '../reducers/PokemonStats'
 
 function PokemonView(props, {match}) {
 
@@ -22,6 +23,7 @@ async function getPokemonData()  {
   try {
     const response = await fetch(URL)
     const data = await response.json()
+    getPokemonStats(data)
 
     const evolutionURL = `https://pokeapi.co/api/v2/pokemon-species/${data.id}`
     const evolutionResponse = await fetch(evolutionURL)
@@ -42,12 +44,14 @@ async function getPokemonData()  {
         "evolves_at" : !evolutionDetails ? 1 : evolutionDetails.min_level == null ? "N/A" : evolutionDetails.min_level,
         "pokemon_id": evolutionEndpoint.species.url.slice(42, evolutionEndpoint.species.url.length - 1)
       })
+
+     
       if (evolutionEndpoint['evolves_to'].length > 1) {
         for (var pokemonCount = 1; pokemonCount < evolutionEndpoint["evolves_to"].length; pokemonCount++) {
           evolutionArray.push({
             "name" : evolutionEndpoint['evolves_to'][pokemonCount].species.name,
-            "evolves_at" : evolutionEndpoint['evolves_to'][pokemonCount] ? 1 : evolutionEndpoint['evolves_to']['min_level'],
-            "pokemon_id": evolutionEndpoint['evolves_to'][pokemonCount].species.url.slice(42, evolutionEndpoint.species.url.length - 1)
+            "evolves_at" : !evolutionEndpoint['evolves_to'][pokemonCount] ? 1 : evolutionEndpoint['evolves_to']['min_level'] == null ? "N/A" : evolutionEndpoint['evolves_to']['min_level'],
+            "pokemon_id": evolutionEndpoint['evolves_to'][pokemonCount].species.url.slice(42, evolutionEndpoint['evolves_to'][pokemonCount].species.url.length - 1)
           })
         }
       }
@@ -63,7 +67,16 @@ async function getPokemonData()  {
   }
 }
 
-
+function getPokemonStats(stats) {
+  var statsArray = []
+  for (var counter = 0; counter < stats.stats.length; counter++){
+      statsArray.push({
+        "name" : stats.stats[counter].stat.name,
+        "value" : stats.stats[counter].base_stat
+      })
+  }
+  props.addStats(statsArray)
+}
 
 const handleClick = () => {
   props.resetPokemonFilter('')
@@ -92,7 +105,8 @@ const mapDispatchToProps = (dispatch) => {
     pokemonName: (pokemon) => {dispatch({type: FETCH_POKEMON_NAME, payload: pokemon})},
     fetchedSinglePokemonData : (fetchedData) => {dispatch({type:FETCH_POKEMON_DATA, payload:fetchedData})},
     resetPokemonFilter: (emptyString) => {dispatch({type:SEARCH, payload: emptyString})},
-    resetOffsetData: (offset) => {dispatch({type: offsetDataChange, payload: offset})}
+    resetOffsetData: (offset) => {dispatch({type: offsetDataChange, payload: offset})},
+    addStats: (stats) => {dispatch({type: FETCH_POKEMON_STATS, payload: stats})}
   }
 }
 

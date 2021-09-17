@@ -1,0 +1,46 @@
+.chart {
+    min-width: 80%;
+    border: solid;
+}
+
+h4 {
+    margin: 5px;
+}
+
+dl {
+    display: flex;
+    height: 40px;
+}
+
+dd {
+    margin: 0 20px;
+}
+.stat-name {
+    width: 50%;
+    text-align: left;
+    height: 35px;
+    margin: auto;
+    font-size: 0.9em;
+}
+
+.bar {
+    /* max-width: 500px;
+    min-width: 300px; */
+    display: flex;
+    justify-content: left;
+    /* margin: 0; */
+    padding: 0;
+    background-image: linear-gradient(to right, rgb(236, 43, 43), rgb(247, 190, 86));
+    margin: 3px 0;
+}
+
+@media screen and (max-width: 500px) {
+
+    .bar {
+        display: none;
+    }
+
+    .chart-container > div {
+        width: 200px;
+    }
+}
