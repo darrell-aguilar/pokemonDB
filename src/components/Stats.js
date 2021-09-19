@@ -9,14 +9,12 @@ function Stats(props) {
     });
 
     const [highestNumber, setHighestNumber] = useState(0);
-
     const getHighestNumber = (number) => {
         props.Stats.forEach(element => {
             if (element.value > highestNumber) {
             setHighestNumber(element.value)
             }
         });
-        console.log(highestNumber)
     }   
 
     return (
@@ -27,7 +25,9 @@ function Stats(props) {
                 <dl key={element.name}>
                     <dt className="stat-name">{element.name.toUpperCase()}</dt>
                     <dd>{element.value}</dd>
-                    <div className={`bar ${element.value}`} style={{width: `${element.value * 4}px`}}></div>
+                    <div className="chart">
+                        <div className={`bar ${element.value}`} style={{width: `${(element.value/highestNumber) * 300}px`}}></div>
+                    </div>
                 </dl>)
                 }
                 
