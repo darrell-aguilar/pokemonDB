@@ -13,6 +13,9 @@ function PokemonGroup(props) {
     return (
         <div className="pokemonList">
         <h3>Pokemon not found!</h3>
+        <p>This filter only searches for PoKemon already loaded on the page</p>
+        <p>To search for the PoKemon you are looking for, click Search</p>
+        <button className="buttonFormat">Search</button>
         </div>
     )
     else
