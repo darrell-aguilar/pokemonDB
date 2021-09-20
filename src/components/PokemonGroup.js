@@ -20,8 +20,8 @@ function PokemonGroup(props) {
           <div className="pokemonNotFound">
             <h3>Pokemon not found!</h3>
             <div id ="text">
-              <p>This filter only searches for PoKemon already loaded on the page</p>
-              <p>To search for the PoKemon you are looking for, click Search</p>
+              <p style={{color: "red"}}>This filter only searches for PoKemon already loaded on the page</p>
+              <p>To search for the PoKemon you are looking for, type in the full PoKemon name above and click Search</p>
             </div>
             <button className="buttonFormat" onClick={searchPokemon}>Search</button>
           </div>

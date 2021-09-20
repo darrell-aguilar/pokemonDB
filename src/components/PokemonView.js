@@ -17,6 +17,7 @@ const [dataFetched, setDataFetched] = useState(false)
 
 useEffect(() => {
   getPokemonData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
 async function getPokemonData()  {
