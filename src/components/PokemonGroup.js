@@ -1,21 +1,30 @@
 import {connect} from 'react-redux'
 import ImageMissing from '../images/not-found.png'
 import {FETCH_POKEMON_NAME} from '../reducers/FetchPokemonName'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 function PokemonGroup(props) {
 
     const PokemonCardRender = connect(null, mapDispatchToProps)(PokemonCard);
     const filterPokemon = props.pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(props.search.toLowerCase()));
-    
+    const history = useHistory();
+
+    const searchPokemon = () => {
+      props.FetchPokemonName(props.search);
+      history.push(`/${props.search}`)
+      }
 
     if (filterPokemon.length === 0)
     return (
-        <div className="pokemonList">
-        <h3>Pokemon not found!</h3>
-        <p>This filter only searches for PoKemon already loaded on the page</p>
-        <p>To search for the PoKemon you are looking for, click Search</p>
-        <button className="buttonFormat">Search</button>
+        <div className="pokemonNotFoundContainer">
+          <div className="pokemonNotFound">
+            <h3>Pokemon not found!</h3>
+            <div id ="text">
+              <p>This filter only searches for PoKemon already loaded on the page</p>
+              <p>To search for the PoKemon you are looking for, click Search</p>
+            </div>
+            <button className="buttonFormat" onClick={searchPokemon}>Search</button>
+          </div>
         </div>
     )
     else
@@ -58,10 +67,11 @@ const mapStateToProps = (state) => {
     return {
         pokemons: state.pokemonlist,
         search: state.PokemonSearch,
-        offset: state.offsetData
+        offset: state.offsetData,
+        pokemonName: state.FetchPokemonName
     }
 }
 
-export default connect(mapStateToProps)(PokemonGroup);
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonGroup);
 
 
