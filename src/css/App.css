@@ -20,6 +20,22 @@ body {
   text-align: center;
 }
 
+
+.pokemonNotFoundContainer {
+  height: 500px;
+}
+
+.pokemonNotFound {
+  margin-top: 50px;
+}
+.pokemonNotFound > h3 {
+  margin-bottom: 20px;
+}
+
+#text {
+  margin-bottom: 20px;
+}
+
 .pokemonSearch {
   justify-content: center;
   width: 300px;
