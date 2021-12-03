@@ -51,7 +51,7 @@ export function PokemonCard(props) {
         </div></Link><br/><br/>
         <div>{"#" + (props.index)}
         </div>
-        <div className="pokemonTitle">{props.pokemonName.charAt(0).toUpperCase() + props.pokemonName.slice(1)}
+        <div className="pokemonTitle" onClick={handleClick}>{props.pokemonName.charAt(0).toUpperCase() + props.pokemonName.slice(1)}
         </div>
       </div>   
       )

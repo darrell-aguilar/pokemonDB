@@ -22,6 +22,7 @@ body {
 
 .pokemonNotFoundContainer {
   height: 500px;
+  margin-top: 20%;
 }
 
 .pokemonNotFound {

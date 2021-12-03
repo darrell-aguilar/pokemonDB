@@ -7,11 +7,13 @@ import { LOADING } from "../reducers/Loading";
 import PokemonGroup from "./PokemonGroup";
 
 function MainBody(props) {
+
+  var URL = `https://pokeapi.co/api/v2/pokemon/?limit=${props.offset}`;
+  const addToOffset = 40;
+
   useEffect(() => {
     if (props.pokemonlist.length === 0) getPokemonList();
   });
-
-  var URL = `https://pokeapi.co/api/v2/pokemon/?limit=${props.offset}`;
 
   async function getPokemonList() {
     const response = await fetch(URL);
@@ -26,7 +28,6 @@ function MainBody(props) {
     props.searchPokemon(event.target.value);
   };
 
-  const addToOffset = 40;
   const handleClick = () => {
     URL = `https://pokeapi.co/api/v2/pokemon/?limit=${addToOffset}&offset=${props.offset}`;
     getPokemonList();
