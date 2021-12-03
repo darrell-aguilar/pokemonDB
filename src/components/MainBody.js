@@ -36,7 +36,10 @@ function MainBody(props) {
   if (props.loading === true)
     return (
       <div className="main">
-        <h3>Data is being fetched...</h3>
+        <div className="load-screen">
+          <h3 className="fetch-header">Data is being fetched...</h3>
+          <div className="loading-icon"></div>
+        </div>
       </div>
     );
   else
