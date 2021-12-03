@@ -55,7 +55,10 @@ function PokemonData(props) {
             </div>
             <EvolutionChart />
           </div>
-        ) : (<p>Fetching data from API...</p>)}
+        ) : (<div className="load-screen">
+            <p>Fetching data from API...</p>
+            <div className="loading-icon"></div>
+            </div>)}
       </div>
     );
 }
