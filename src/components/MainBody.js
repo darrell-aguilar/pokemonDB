@@ -25,7 +25,7 @@ function MainBody(props) {
   }
 
   const handleChange = (event) => {
-    props.searchPokemon(event.target.value);
+    props.searchPokemon(event.target.value.toLowerCase());
   };
 
   const handleClick = () => {
