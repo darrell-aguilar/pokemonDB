@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useHistory } from 'react-router-dom'
 import PokemonData from './PokemonData'
 import {SEARCH} from '../reducers/Search'
 import {FETCH_POKEMON_DATA} from '../reducers/FetchPokemonData'
@@ -11,6 +11,7 @@ import { FETCH_POKEMON_STATS } from '../reducers/PokemonStats'
 
 function PokemonView(props, {match}) {
 
+const history = useHistory();
 const URL = `https://pokeapi.co/api/v2/pokemon/${props.match.params.id}`
 
 const [dataFetched, setDataFetched] = useState(false)
@@ -79,13 +80,41 @@ function getPokemonStats(stats) {
   props.addStats(statsArray)
 }
 
+async function fetchPage(pokemonID) {
+    const getPokemonName = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
+    const response = await getPokemonName.json()
+    console.log(response.name)
+    history.push(`/${response.name}`)
+    history.go()
+}
+
+const switchPage = (event) => {
+  switch(event.target.value) {
+    case "previous": {
+      fetchPage(props.FetchPokemonData.id - 1)
+      break;
+    }
+
+    case "next": {
+      fetchPage(props.FetchPokemonData.id + 1)
+      break;
+    }
+    default:
+      break;
+  }
+}
+
+
 const handleClick = () => {
   props.resetPokemonFilter('')
 }
 
     return (
         <div className="main">
-          <Link to={"/"}><button onClick={handleClick} className='buttonFormat'>Back</button></Link>
+          <div className="next-and-previous">
+            <button onClick={switchPage} disabled={props.FetchPokemonData.id === 1 ? true : false} value="previous" className='buttonFormat switchbutton'>Previous</button>
+            <button onClick={switchPage} value="next" className='buttonFormat switchbutton'>Next</button>
+          </div>
           <PokemonData dataFetched={dataFetched}/>
         </div>
       )
