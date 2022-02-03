@@ -50,6 +50,12 @@ a:visited {
     color: black;
 }
 
+@media screen and (max-width: 800px) {
+    .evolution  {
+      width: 100%;
+    }
+  }
+
 @media screen and (max-width: 360px) {
     .pokemon-image-evo  {
       max-width: 75vw;

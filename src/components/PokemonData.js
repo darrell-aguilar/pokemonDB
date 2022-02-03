@@ -21,11 +21,11 @@ function PokemonData(props) {
           <div>
             <div className="pokemon-data-container">
               <div className="pokemon-name">
+                <h2>{"#" + props.FetchPokemonData.id}</h2>
                 <h1>
                   {props.FetchPokemonData.name.charAt(0).toUpperCase() +
                     props.FetchPokemonData.name.slice(1)}
                 </h1>
-                <h1>{"#" + props.FetchPokemonData.id}</h1>
               </div>
               <div className="img-data">
                 <div className="img-container">
@@ -34,20 +34,22 @@ function PokemonData(props) {
                     alt={props.FetchPokemonData.name}
                     onError={ImageNotFound}
                   />
-                </div>
                 <div className="classdata">
-                  <h4>Height: {props.FetchPokemonData.height}</h4>
-                  <h4>Weight: {props.FetchPokemonData.weight}</h4>
-                  <div className="pokemonTypesContainer">
-                    {props.FetchPokemonData.types.map((type) => (
-                      <div
-                        key={type.type.name}
-                        className={`pokemonType ${type.type.name}`}
-                      >
-                        {type.type.name.charAt(0).toUpperCase() +
-                          type.type.name.slice(1)}
+                  <div className="height-weight">
+                    <h4>Height: {props.FetchPokemonData.height}</h4>
+                    <h4>Weight: {props.FetchPokemonData.weight}</h4>
+                  </div>
+                    <div className="pokemonTypesContainer">
+                      {props.FetchPokemonData.types.map((type) => (
+                        <div
+                          key={type.type.name}
+                          className={`pokemonType ${type.type.name}`}
+                        >
+                          {type.type.name.charAt(0).toUpperCase() +
+                            type.type.name.slice(1)}
+                        </div>
+                      ))}
                       </div>
-                    ))}
                   </div>
                 </div>
                 <Stats />

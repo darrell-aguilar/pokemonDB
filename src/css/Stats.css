@@ -1,3 +1,9 @@
+.chart-container {
+    margin: auto;
+    align-items: center;
+    height: 100%;
+}
+
 h4 {
     margin: 5px;
 }
@@ -31,14 +37,19 @@ dd {
     min-width: 300px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
 
     .bar {
         display: none;
     }
 
+    .chart-container {
+        width: 100%;
+        margin: auto;
+    }
+
     .chart-container > div {
-        width: 200px;
+        width: 100%;
     }
 
     .chart {
