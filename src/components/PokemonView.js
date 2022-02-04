@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PokemonData from './PokemonData'
 import {SEARCH} from '../reducers/Search'
 import {FETCH_POKEMON_DATA} from '../reducers/FetchPokemonData'
@@ -102,11 +102,6 @@ const switchPage = (event) => {
     default:
       break;
   }
-}
-
-
-const handleClick = () => {
-  props.resetPokemonFilter('')
 }
 
     return (
