@@ -106,10 +106,10 @@ const switchPage = (event) => {
 
     return (
         <div className="main">
-          <div className="next-and-previous">
+          {props.FetchPokemonName !== "Unknown" && <div className="next-and-previous">
             <button onClick={switchPage} disabled={props.FetchPokemonData.id === 1 ? true : false} value="previous" className='buttonFormat switchbutton'>Previous</button>
             <button onClick={switchPage} value="next" className='buttonFormat switchbutton'>Next</button>
-          </div>
+          </div>}
           <PokemonData dataFetched={dataFetched}/>
         </div>
       )
