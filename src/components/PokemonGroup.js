@@ -31,7 +31,7 @@ function PokemonGroup(props) {
     else
     return (
           <div className="pokemonList">
-             {filterPokemon.map((pokemonChar, idx) => (<PokemonCardRender key={pokemonChar.name} pokemonName={pokemonChar.name} index={idx + 1}></PokemonCardRender>))}
+             {filterPokemon.map((pokemonChar) => (<PokemonCardRender key={pokemonChar.name} pokemonName={pokemonChar.name} index={pokemonChar.url.slice(34, -1)}></PokemonCardRender>))}
           </div>
     )
 }
