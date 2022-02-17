@@ -1,5 +1,7 @@
 # Pokemon Web App using React and PokeAPI
 
+You can find the live version of this project [here](https://pokemondb.duckdns.org/)
+
 A Front End application built using the following stack/technologies:
   - React
   - Redux
