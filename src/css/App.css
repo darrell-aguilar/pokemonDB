@@ -59,7 +59,7 @@ body {
   height: 30px;
   padding-left: 30px;
   margin-bottom: 20px;
-  border: none;
+  border-style: none none solid none ;
   border-bottom: solid;
   border-color: rgba(102, 95, 91, 0.5);
   background-image: url(../images/search.png);
@@ -70,8 +70,6 @@ body {
 }
 
 .pokemonSearch:focus {
-  border: none;
-  border-bottom: solid;
   outline-style: none;
   border-color: rgba(255, 162, 0, 0.8);
   background-image: none;
