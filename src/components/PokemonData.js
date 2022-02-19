@@ -11,8 +11,8 @@ function PokemonData(props) {
   if (props.FetchPokemonName === "Unknown")
     return (
       <div className="pokemonInfo">
-        <h1>Error 404</h1>
-        <h1>Pokemon not found</h1><br/>
+        <h1>404</h1>
+        <h2>Pokemon not found</h2><br/>
         <p>This Pokemon cannot be found</p>
         <p>Please head back to the main page and search again</p>
       </div>

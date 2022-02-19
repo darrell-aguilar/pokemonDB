@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import ImageMissing from '../images/not-found.png'
+import SadPokemon from '../images/sad-pokemon.png'
 import {FETCH_POKEMON_NAME} from '../reducers/FetchPokemonName'
 import {Link, useHistory} from 'react-router-dom'
 import '../css/App.css'
@@ -19,10 +20,11 @@ function PokemonGroup(props) {
     return (
         <div className="pokemonNotFoundContainer">
           <div className="pokemonNotFound">
-            <h2>Pokemon not found!</h2>
+            <h2>Sorry, Pokemon not found</h2>
+            <img src={SadPokemon} style={{width: "100px", padding: "10px"}}></img>
             <div id="text">
-              <p style={{padding:"20px"}}><b>This Pokemon is not on the main page</b></p>
-              <p style={{padding:"0 20px"}}><b>To search for the PoKemon you are looking for, type in the full PoKemon name above and click Search</b></p>
+              <p style={{padding:"0 0 15px 0"}}>This Pokemon is not on the main page</p>
+              <p style={{padding:"0 20px"}}>To search for the PoKemon you are looking for, type in the full PoKemon name above and click Search</p>
             </div>
             <button className="buttonFormat" onClick={searchPokemon}>Search</button>
           </div>
