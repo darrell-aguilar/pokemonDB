@@ -10,7 +10,7 @@ const store = configureStore({
   devTools: true,
 })
 
-const root = document.getElementById("root")
+const root = document.getElementById("root") as HTMLElement
 
 createRoot(root).render(
   <Provider store={store}>
