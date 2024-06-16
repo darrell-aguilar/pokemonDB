@@ -5,22 +5,21 @@ import { GET_POKEMON, GET_MORE_POKEMON } from "../reducers/Pokemonlist"
 import { offsetDataChange } from "../reducers/OffsetData"
 import { LOADING } from "../reducers/Loading"
 import PokemonGroup from "./PokemonGroup"
+import { pokeApi } from "../api/api"
 
 function Home(props) {
-  var URL = `https://pokeapi.co/api/v2/pokemon/?limit=${props.offset}`
   const addToOffset = 40
 
   useEffect(() => {
-    if (props.pokemonlist.length === 0) getPokemonList()
+    if (props.pokemonlist.length === 0) getPokemonRange(props.offset, 0)
   })
 
-  async function getPokemonList() {
-    const response = await fetch(URL)
-    const data = await response.json()
+  async function getPokemonRange(limit, offset) {
+    const response = await pokeApi.getPokemonList(limit, offset)
     if (props.pokemonlist.length === 0) {
-      props.getPokemon(data.results)
+      props.getPokemon(response.data.results)
       props.setLoadedState(false)
-    } else props.getMorePokemon(data.results)
+    } else props.getMorePokemon(response.data.results)
   }
 
   const handleChange = (event) => {
@@ -28,8 +27,7 @@ function Home(props) {
   }
 
   const handleClick = () => {
-    URL = `https://pokeapi.co/api/v2/pokemon/?limit=${addToOffset}&offset=${props.offset}`
-    getPokemonList()
+    getPokemonRange(addToOffset, props.offset)
     props.setOffsetData(props.offset + addToOffset)
   }
 

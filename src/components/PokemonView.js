@@ -8,6 +8,7 @@ import { POKEMON_EVOLUTION } from "../reducers/Evolution"
 import { offsetDataChange } from "../reducers/OffsetData"
 import { FETCH_POKEMON_NAME } from "../reducers/FetchPokemonName"
 import { FETCH_POKEMON_STATS } from "../reducers/PokemonStats"
+import { pokeApi } from "../api/api"
 
 function PokemonView(props, { match }) {
   const navigate = useNavigate()
@@ -22,15 +23,11 @@ function PokemonView(props, { match }) {
 
   async function getPokemonData() {
     try {
-      const response = await fetch(URL)
-      const data = await response.json()
-      getPokemonStats(data)
+      const pokemon = await pokeApi.getPokemon(params.id)
+      getPokemonStats(pokemon.data.stats)
 
-      const evolutionURL = `https://pokeapi.co/api/v2/pokemon-species/${data.id}`
-      const evolutionResponse = await fetch(evolutionURL)
-      const evolutiondata = await evolutionResponse.json()
-
-      const evolutionChainURL = `${evolutiondata.evolution_chain.url}`
+      const evolutiondata = await pokeApi.getPokemonEvolution(pokemon.data.id)
+      const evolutionChainURL = `${evolutiondata.data.evolution_chain.url}`
       const evolutionChainResponse = await fetch(evolutionChainURL)
       const evolutionChaindata = await evolutionChainResponse.json()
 
@@ -83,7 +80,7 @@ function PokemonView(props, { match }) {
       )
 
       props.addEvolutionChain(evolutionArray)
-      props.fetchedSinglePokemonData(data)
+      props.fetchedSinglePokemonData(pokemon.data)
       setDataFetched(true)
     } catch (err) {
       props.pokemonName("Unknown")
@@ -93,10 +90,10 @@ function PokemonView(props, { match }) {
 
   function getPokemonStats(stats) {
     var statsArray = []
-    for (var counter = 0; counter < stats.stats.length; counter++) {
+    for (var counter = 0; counter < stats.length; counter++) {
       statsArray.push({
-        name: stats.stats[counter].stat.name,
-        value: stats.stats[counter].base_stat,
+        name: stats[counter].stat.name,
+        value: stats[counter].base_stat,
       })
     }
     props.addStats(statsArray)
