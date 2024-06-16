@@ -1,20 +1,21 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import { createRoot } from "react-dom/client"
 import App from "./App"
-import { createStore } from "redux"
+import { configureStore } from "@reduxjs/toolkit"
 import allReducers from "./reducers/RootReducer"
 import { Provider } from "react-redux"
 
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+const store = configureStore({
+  reducer: allReducers,
+  devTools: true,
+})
 
-ReactDOM.render(
+const root = document.getElementById("root")
+
+createRoot(root).render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 )
