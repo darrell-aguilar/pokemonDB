@@ -1,1 +1,1 @@
-export const OFFSET: number = 40
+export const OFFSET: string = "40"

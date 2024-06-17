@@ -7,13 +7,14 @@ import { LOADING } from "../reducers/Loading"
 import PokemonGroup from "./PokemonGroup"
 import { pokeApi } from "../api/api"
 import { OFFSET } from "../helpers/constants"
+import { Dispatch } from "@reduxjs/toolkit"
 
-function Home(props) {
+function Home(props: any) {
   useEffect(() => {
-    if (props.pokemonlist.length === 0) getPokemonRange(props.offset, 0)
+    if (props.pokemonlist.length === 0) getPokemonRange(props.offset, "0")
   })
 
-  async function getPokemonRange(limit, offset) {
+  async function getPokemonRange(limit: string, offset: string) {
     const response = await pokeApi.getPokemonList(limit, offset)
     if (props.pokemonlist.length === 0) {
       props.getPokemon(response.data.results)
@@ -21,8 +22,8 @@ function Home(props) {
     } else props.getMorePokemon(response.data.results)
   }
 
-  const handleChange = (event) => {
-    props.searchPokemon(event.target.value.toLowerCase())
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    props.searchPokemon(event.target?.value.toLowerCase())
   }
 
   const handleClick = () => {
@@ -60,7 +61,7 @@ function Home(props) {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     pokemonlist: state.pokemonlist,
     offset: state.offsetData,
@@ -69,21 +70,21 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    searchPokemon: (searched) => {
+    searchPokemon: (searched: string) => {
       dispatch({ type: SEARCH, payload: searched })
     },
-    getPokemon: (pokemonlistobject) => {
+    getPokemon: (pokemonlistobject: string) => {
       dispatch({ type: GET_POKEMON, payload: pokemonlistobject })
     },
-    getMorePokemon: (updatedpokemonlist) => {
+    getMorePokemon: (updatedpokemonlist: string) => {
       dispatch({ type: GET_MORE_POKEMON, payload: updatedpokemonlist })
     },
-    setOffsetData: (offsetNumber) => {
+    setOffsetData: (offsetNumber: string) => {
       dispatch({ type: offsetDataChange, payload: offsetNumber })
     },
-    setLoadedState: (loadstate) => {
+    setLoadedState: (loadstate: string) => {
       dispatch({ type: LOADING, payload: loadstate })
     },
   }
