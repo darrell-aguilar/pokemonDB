@@ -6,10 +6,9 @@ import { offsetDataChange } from "../reducers/OffsetData"
 import { LOADING } from "../reducers/Loading"
 import PokemonGroup from "./PokemonGroup"
 import { pokeApi } from "../api/api"
+import { OFFSET } from "../helpers/constants"
 
 function Home(props) {
-  const addToOffset = 40
-
   useEffect(() => {
     if (props.pokemonlist.length === 0) getPokemonRange(props.offset, 0)
   })
@@ -27,11 +26,11 @@ function Home(props) {
   }
 
   const handleClick = () => {
-    getPokemonRange(addToOffset, props.offset)
-    props.setOffsetData(props.offset + addToOffset)
+    getPokemonRange(OFFSET, props.offset)
+    props.setOffsetData(OFFSET + props.offset)
   }
 
-  if (props.loading === true)
+  if (props.loading)
     return (
       <div className="main">
         <div className="load-screen">
