@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { POKE_API } from './constants';
 import { IPokemonList, IPokemonListResult } from '../utils/types';
+import { formatPokemonDetails } from '../utils/helpers';
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: POKE_API }),
@@ -18,19 +19,8 @@ export const apiSlice = createApi({
     getPokemon: builder.query({
       query: (id: string) => `/pokemon/${id}`,
     }),
-    getPokemonEvolution: builder.query<any, string>({
-      async queryFn(arg, api, extraOptions, baseQuery) {
-        const pokemonSpecies = (await baseQuery(
-          `/pokemon-species/${arg}`,
-        )) as any;
-
-        const evolutionEndpoint =
-          pokemonSpecies?.data?.evolution_chain?.url.replace(POKE_API, '');
-
-        const evolutionChain = await baseQuery(evolutionEndpoint);
-
-        return evolutionChain.data as any;
-      },
+    getPokemonEvolution: builder.query({
+      query: (endpoint: string) => `${endpoint}`,
     }),
     getPokemonSpecies: builder.query({
       query: (id: string) => `/pokemon-species/${id}`,
