@@ -1,29 +1,24 @@
-import "./css/App.css"
-import React, { ReactElement } from "react"
+import "./css/App.scss"
+import { ReactElement } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { connect } from "react-redux"
+import { Provider } from "react-redux"
 import Nav from "./components/Nav"
 import Home from "./components/Home"
 import PokemonView from "./components/PokemonView"
+import { store } from "./reducers/store"
 
-function App(): ReactElement {
+export default function App(): ReactElement {
   return (
-    <Router>
-      <div className="App">
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<PokemonView />} />
-        </Routes>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="app">
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:id" element={<PokemonView />} />
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
   )
 }
-
-const mapStateToProps = (state: any) => {
-  return {
-    singlepokemonname: state.singlepokemonname,
-  }
-}
-
-export default connect(mapStateToProps)(App)

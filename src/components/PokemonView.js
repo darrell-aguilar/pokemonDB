@@ -8,18 +8,20 @@ import { POKEMON_EVOLUTION } from "../reducers/Evolution"
 import { offsetDataChange } from "../reducers/OffsetData"
 import { FETCH_POKEMON_NAME } from "../reducers/FetchPokemonName"
 import { FETCH_POKEMON_STATS } from "../reducers/PokemonStats"
-import { pokeApi } from "../api/api"
+import { pokeApi } from "../utils/api"
+import { useGetPokemonEvolutionQuery } from "../utils/apiSlice"
 
 function PokemonView(props, { match }) {
+  const { data, isLoading } = useGetPokemonEvolutionQuery(1)
   const navigate = useNavigate()
   const params = useParams()
   const URL = `https://pokeapi.co/api/v2/pokemon/${params.id}`
 
   const [dataFetched, setDataFetched] = useState(false)
 
-  useEffect(() => {
-    getPokemonData()
-  }, [])
+  // useEffect(() => {
+  //   getPokemonData()
+  // }, [])
 
   async function getPokemonData() {
     try {
@@ -126,7 +128,7 @@ function PokemonView(props, { match }) {
 
   return (
     <div className="main">
-      {props.FetchPokemonName !== "Unknown" && (
+      {/* {props.FetchPokemonName !== "Unknown" && (
         <div className="next-and-previous">
           <button
             onClick={switchPage}
@@ -144,8 +146,8 @@ function PokemonView(props, { match }) {
             Next
           </button>
         </div>
-      )}
-      <PokemonData dataFetched={dataFetched} />
+      )} */}
+      {/* <PokemonData dataFetched={dataFetched} /> */}
     </div>
   )
 }
