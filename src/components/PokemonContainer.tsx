@@ -1,10 +1,9 @@
-import "../css/PokemonContainer.scss"
-import { useGetPokemonListQuery } from "../utils/apiSlice"
-import PokemonCard from "./PokemonCard"
+import '../css/PokemonContainer.scss';
+import { useGetPokemonListQuery } from '../utils/apiSlice';
+import PokemonCard from './PokemonCard';
 
 export default function PokemonContainer() {
-  const { data, isLoading } = useGetPokemonListQuery({ limit: 20, offset: 0 })
-
+  const { data, isLoading } = useGetPokemonListQuery({ limit: 20, offset: 0 });
   if (isLoading)
     return (
       <div className="main">
@@ -13,13 +12,16 @@ export default function PokemonContainer() {
           <div className="loading-icon"></div>
         </div>
       </div>
-    )
+    );
   else
     return (
       <div className="main">
-        {data?.results.map((pokemon: any, index: number) => (
-          <PokemonCard props={{ ...pokemon, index }} key={pokemon.name} />
+        {data?.map((pokemon: any, index: number) => (
+          <PokemonCard
+            props={{ ...pokemon, index }}
+            key={pokemon.name}
+          />
         ))}
       </div>
-    )
+    );
 }
