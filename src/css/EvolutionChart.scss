@@ -1,0 +1,14 @@
+.evolution-chart {
+  &__title {
+    padding: 4rem;
+    font-weight: 800;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+}

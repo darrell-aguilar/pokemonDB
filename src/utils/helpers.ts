@@ -1,19 +1,33 @@
+import { POKEMON_SPECIES_URL } from "./constants"
+import { IEvolutionChain } from "./types"
+
 export function formatPokemonDetails(pokemon: any, chain: any) {
   return {
     stats: formatStats(pokemon.stats),
     evolution: formatEvolutionChain(chain),
-  };
+  }
 }
 
-export function formatEvolutionChain(evolutionChain: any) {
-  let chain = evolutionChain.chain;
-  const evolution = [];
+export function formatEvolutionChain(
+  evolutionChain: any
+): Array<IEvolutionChain> {
+  let chain = evolutionChain.chain
+  const evolution = []
   do {
-    evolution.push(chain.species);
-    chain = chain?.evolves_to[0];
-  } while (chain?.evolves_to);
+    const evolutionDetails = {
+      minLevel: chain.evolution_details.length
+        ? chain.evolution_details[0].min_level
+        : 1,
+      id: chain.species.url.replace(POKEMON_SPECIES_URL, "").slice(0, -1),
+      title: capitalize(chain.species.name),
+      ...chain.species,
+    }
 
-  return evolution;
+    evolution.push(evolutionDetails)
+    chain = chain?.evolves_to[0]
+  } while (chain?.evolves_to)
+
+  return evolution
 }
 
 function formatStats(statuses: any[]) {
@@ -21,6 +35,10 @@ function formatStats(statuses: any[]) {
     return {
       name: status.stat.name,
       value: status.base_stat,
-    };
-  });
+    }
+  })
+}
+
+export function capitalize(chars: string) {
+  return chars.charAt(0).toUpperCase() + chars.slice(1)
 }

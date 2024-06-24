@@ -1,39 +1,42 @@
-import { Link } from 'react-router-dom';
-import '../css/PokemonCard.scss';
+import { Link } from "react-router-dom"
+import "../css/PokemonCard.scss"
+import { ARTWORK_URL } from "../utils/constants"
+import { ReactNode } from "react"
 
-export default function PokemonCard({ props }: any) {
-  const imageMissing = require('../images/not-found.png');
+interface Props {
+  cardProps: CardProps
+}
+interface CardProps {
+  name: string
+  id: number
+  title: string
+  fetchAll?: boolean
+  children?: ReactNode
+}
+
+export default function PokemonCard({ cardProps }: Props) {
+  const imageMissing = require("../images/not-found.png")
   const imageNotFound = (img: any) => {
-    img.target.src = imageMissing;
-  };
-  const handleClick = () => {};
+    img.target.src = imageMissing
+  }
 
-  const formatName = (name: string) =>
-    name.charAt(0).toUpperCase() + name.slice(1);
+  const { name, title, id, children } = cardProps
 
   return (
-    <Link to={`/${props.name}`}>
-      <div className="pokemon-card">
-        <div className="pokemon-card__container">
-          <div className="pokemon-card__id">{'#' + (props.index + 1)}</div>
-          <img
-            className="pokemon-card__thumbnail"
-            onClick={handleClick}
-            key={props.name}
-            alt={`${props.name}`}
-            title={formatName(props.name)}
-            onError={imageNotFound}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-              props.index + 1
-            }.png`}
-          />
-        </div>
-        <div
-          className="pokemon-card__name"
-          onClick={handleClick}>
-          {formatName(props.name)}
-        </div>
+    <Link to={`/${name}`} className="pokemon-card">
+      <div className="pokemon-card__container">
+        <p className="pokemon-card__id">{"#" + id}</p>
+        <img
+          className="pokemon-card__thumbnail"
+          key={name}
+          alt={name}
+          title={title}
+          onError={imageNotFound}
+          src={`${ARTWORK_URL}/${id}.png`}
+        />
       </div>
+      <div className="pokemon-card__name">{title}</div>
+      {children}
     </Link>
-  );
+  )
 }
