@@ -1,6 +1,6 @@
 import "./PokemonDetails.scss"
 import { PokemonCard } from "../PokemonCard"
-import SkeletonLoader from "../SkeletonLoader"
+import { SkeletonLoader } from "../SkeletonLoader"
 import { useGetPokemonQuery } from "../../utils/apiSlice"
 import { useParams } from "react-router"
 import PokemonInfoContainer from "../PokemonInfoContainer/PokemonInfoContainer"

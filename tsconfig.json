@@ -23,10 +23,11 @@
       "skipLibCheck": true,
       "strict": true,
       "strictPropertyInitialization": true,
-      "target": "ES2018"
+      "target": "ES2018",
+      "types": ["node"]
     },
     "include": [
       "src",
-      "/src/index.d.ts"
+      "src/index.d.ts"
     ]
 }

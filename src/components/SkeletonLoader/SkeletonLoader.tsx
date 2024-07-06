@@ -1,4 +1,4 @@
-import "../css/SkeletonLoader.scss"
+import "./SkeletonLoader.scss"
 
 type SkeletonLoaderProps = {
   height?: string
@@ -6,7 +6,7 @@ type SkeletonLoaderProps = {
   count?: number
 }
 
-export default function SkeletonLoader({
+export function SkeletonLoader({
   width = "250px",
   height = "300px",
   count = 1,

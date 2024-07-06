@@ -1,7 +1,7 @@
 import "./EvolutionChart.scss"
 import { useGetPokemonEvolutionQuery } from "../../utils/apiSlice"
 import { PokemonCard } from "../PokemonCard"
-import SkeletonLoader from "../SkeletonLoader"
+import { SkeletonLoader } from "../SkeletonLoader"
 
 type Props = {
   id: string
