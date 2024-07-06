@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom"
-import "../css/Nav.css"
+import "./Nav.css"
 
-export default function Nav() {
-  const logo = require("../images/pokemon_logo.png")
+export function Nav() {
+  const logo = require("../../images/pokemon_logo.png")
   const location = useLocation()
 
   const handleClick = () => {

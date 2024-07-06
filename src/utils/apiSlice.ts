@@ -4,10 +4,11 @@ import {
   IPokemonList,
   IPokemonListResult,
   IEvolutionChain,
+  IPokemonDetails,
 } from "../utils/types"
 import { capitalize, formatEvolutionChain } from "../utils/helpers"
 
-export const apiSlice = createApi({
+export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: POKE_API }),
   endpoints: (builder) => ({
     getPokemonList: builder.query<
@@ -23,8 +24,15 @@ export const apiSlice = createApi({
           }
         }),
     }),
-    getPokemon: builder.query({
+    getPokemon: builder.query<IPokemonDetails, string>({
       query: (id: string) => `/pokemon/${id}`,
+      transformResponse: (response: any): IPokemonDetails => {
+        return {
+          ...response,
+          title: capitalize(response.name),
+          baseExperience: response.base_experience,
+        }
+      },
     }),
     getPokemonEvolution: builder.query<Array<IEvolutionChain>, string>({
       query: (endpoint: string) => `${endpoint}`,
@@ -43,4 +51,4 @@ export const {
   useGetPokemonQuery,
   useGetPokemonEvolutionQuery,
   useGetPokemonSpeciesQuery,
-} = apiSlice
+} = api

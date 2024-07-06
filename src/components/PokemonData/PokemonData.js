@@ -1,22 +1,23 @@
-import { connect } from "react-redux";
-import ImageMissing from "../images/not-found.png";
-import "../css/PokemonView.css";
-import EvolutionChart from '../components/EvolutionChart'
-import Stats from "../components/Stats";
+import { connect } from "react-redux"
+import ImageMissing from "../images/not-found.png"
+import "../css/PokemonView.css"
+import EvolutionChart from "../EvolutionChart"
+import Stats from "../Stats"
 
 function PokemonData(props) {
   function ImageNotFound(img) {
-    img.target.src = ImageMissing;
+    img.target.src = ImageMissing
   }
   if (props.FetchPokemonName === "Unknown")
     return (
       <div className="pokemonInfo">
         <h1>Error 404</h1>
-        <h1>Pokemon not found</h1><br/>
+        <h1>Pokemon not found</h1>
+        <br />
         <p>This Pokemon cannot be found</p>
         <p>Please head back to the main page and search again</p>
       </div>
-    );
+    )
   else
     return (
       <div className="pokemonInfo">
@@ -37,11 +38,11 @@ function PokemonData(props) {
                     alt={props.FetchPokemonData.name}
                     onError={ImageNotFound}
                   />
-                <div className="classdata">
-                  <div className="height-weight">
-                    <h4>Height: {props.FetchPokemonData.height}</h4>
-                    <h4>Weight: {props.FetchPokemonData.weight}</h4>
-                  </div>
+                  <div className="classdata">
+                    <div className="height-weight">
+                      <h4>Height: {props.FetchPokemonData.height}</h4>
+                      <h4>Weight: {props.FetchPokemonData.weight}</h4>
+                    </div>
                     <div className="pokemonTypesContainer">
                       {props.FetchPokemonData.types.map((type) => (
                         <div
@@ -52,7 +53,7 @@ function PokemonData(props) {
                             type.type.name.slice(1)}
                         </div>
                       ))}
-                      </div>
+                    </div>
                   </div>
                 </div>
                 <Stats />
@@ -60,12 +61,14 @@ function PokemonData(props) {
             </div>
             <EvolutionChart />
           </div>
-        ) : (<div className="load-screen">
+        ) : (
+          <div className="load-screen">
             <p>Fetching data from API...</p>
             <div className="loading-icon"></div>
-            </div>)}
+          </div>
+        )}
       </div>
-    );
+    )
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -73,7 +76,7 @@ const mapStateToProps = (state, ownProps) => {
     Evolution: state.Evolution,
     FetchPokemonData: state.FetchPokemonData,
     FetchPokemonName: state.FetchPokemonName,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(PokemonData);
+export default connect(mapStateToProps)(PokemonData)

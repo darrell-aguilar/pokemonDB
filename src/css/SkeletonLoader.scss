@@ -1,0 +1,19 @@
+.skeleton_container {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.skeleton_loader {
+  animation: skeleton-loading 1s linear infinite alternate;
+  border-radius: 20px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(180, 6%, 90%);
+  }
+  100% {
+    background-color: hsl(0, 0%, 84%);
+  }
+}

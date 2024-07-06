@@ -1,4 +1,4 @@
-import PokemonContainer from "./PokemonContainer"
+import { PokemonContainer } from "./PokemonContainer"
 
 export default function Home(props: any) {
   return (

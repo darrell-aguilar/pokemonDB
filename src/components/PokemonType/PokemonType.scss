@@ -1,0 +1,21 @@
+.pokemon {
+  &_color {
+    width: 6rem;
+    height: 2rem;
+    color: white;
+    border-radius: 8px;
+
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+
+  &_text {
+    margin: auto;
+  }
+}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
-import "../css/PokemonCard.scss"
-import { ARTWORK_URL } from "../utils/constants"
-import { ReactNode } from "react"
+import "./PokemonCard.scss"
+import { ARTWORK_URL } from "../../utils/constants"
 
 interface Props {
   cardProps: CardProps
@@ -11,16 +10,15 @@ interface CardProps {
   id: number
   title: string
   fetchAll?: boolean
-  children?: ReactNode
 }
 
-export default function PokemonCard({ cardProps }: Props) {
-  const imageMissing = require("../images/not-found.png")
+export function PokemonCard({ cardProps }: Props) {
+  const imageMissing = require("../../images/not-found.png")
   const imageNotFound = (img: any) => {
     img.target.src = imageMissing
   }
 
-  const { name, title, id, children } = cardProps
+  const { name, title, id } = cardProps
 
   return (
     <Link to={`/${name}`} className="pokemon-card">
@@ -36,7 +34,6 @@ export default function PokemonCard({ cardProps }: Props) {
         />
       </div>
       <div className="pokemon-card__name">{title}</div>
-      {children}
     </Link>
   )
 }

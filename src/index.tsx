@@ -1,21 +1,15 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import App from "./App"
-import { configureStore } from "@reduxjs/toolkit"
-import allReducers from "./reducers/RootReducer"
-import { Provider } from "react-redux"
-
-const store = configureStore({
-  reducer: allReducers,
-  devTools: true,
-})
+import { ApiProvider } from "@reduxjs/toolkit/query/react"
+import { api } from "./utils/apiSlice"
 
 const root = document.getElementById("root") as HTMLElement
 
 createRoot(root).render(
-  <Provider store={store}>
+  <ApiProvider api={api}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Provider>
+  </ApiProvider>
 )

@@ -1,13 +1,6 @@
 import { POKEMON_SPECIES_URL } from "./constants"
 import { IEvolutionChain } from "./types"
 
-export function formatPokemonDetails(pokemon: any, chain: any) {
-  return {
-    stats: formatStats(pokemon.stats),
-    evolution: formatEvolutionChain(chain),
-  }
-}
-
 export function formatEvolutionChain(
   evolutionChain: any
 ): Array<IEvolutionChain> {
@@ -39,6 +32,7 @@ function formatStats(statuses: any[]) {
   })
 }
 
-export function capitalize(chars: string) {
+export function capitalize(chars: any) {
+  if (typeof chars !== "string") return chars
   return chars.charAt(0).toUpperCase() + chars.slice(1)
 }

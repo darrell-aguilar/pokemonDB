@@ -1,0 +1,36 @@
+.pokemon-details {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  min-height: 400px;
+  margin: auto;
+  padding: 2rem;
+
+  &__container {
+    display: grid;
+    text-align: left;
+    margin: 1rem;
+    padding: 1rem;
+    border: solid gray;
+    border-radius: 0.5rem;
+  }
+
+  &__types {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__type {
+    padding-bottom: 1rem;
+  }
+
+  &__title {
+    color: grey;
+    padding-bottom: 0.25rem;
+    font-size: 1rem;
+  }
+
+  &__data {
+    font-size: 1.25rem;
+  }
+}

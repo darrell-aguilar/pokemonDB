@@ -5,12 +5,18 @@ export interface IPokemonList {
 export interface IPokemonListResult {
   name: string
   url: string
-  title?: string
-  id?: number
+  id: number
+  title: string
   fetchAll?: boolean
 }
 
 export interface IEvolutionChain extends IPokemonListResult {
   minLevel: number
-  url: string
+}
+
+export interface IPokemonDetails extends Omit<IEvolutionChain, "url"> {
+  types: Array<any>
+  height: number
+  weight: number
+  baseExperience: number
 }
