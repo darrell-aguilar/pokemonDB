@@ -6,7 +6,7 @@ import {
   IEvolutionChain,
   IPokemonDetails,
 } from "../utils/types"
-import { capitalize, formatEvolutionChain } from "../utils/helpers"
+import { capitalize, formatEvolutionChain, formatStats } from "../utils/helpers"
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: POKE_API }),
@@ -30,7 +30,13 @@ export const api = createApi({
         return {
           ...response,
           title: capitalize(response.name),
-          baseExperience: response.base_experience,
+          info: {
+            height: response.height,
+            weight: response.weight,
+            experience: response.base_experience,
+            id: response.id,
+          },
+          stats: [...formatStats(response.stats)],
         }
       },
     }),

@@ -16,7 +16,17 @@ export interface IEvolutionChain extends IPokemonListResult {
 
 export interface IPokemonDetails extends Omit<IEvolutionChain, "url"> {
   types: Array<any>
+  info: IPokemonInfo
+  stats: Array<IStats>
+}
+
+interface IPokemonInfo {
   height: number
   weight: number
-  baseExperience: number
+  experience: number
+  id: number
+}
+
+interface IStats {
+  [key: string]: number
 }

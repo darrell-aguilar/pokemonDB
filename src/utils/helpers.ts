@@ -23,7 +23,7 @@ export function formatEvolutionChain(
   return evolution
 }
 
-function formatStats(statuses: any[]) {
+export function formatStats(statuses: any[]) {
   return statuses.map((status) => {
     return {
       name: status.stat.name,
