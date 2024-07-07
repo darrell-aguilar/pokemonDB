@@ -1,12 +1,17 @@
 import { Link, useLocation } from "react-router-dom"
 import "./Nav.scss"
+import { useEffect } from "react"
 
 export function Nav() {
   const logo = require("../../images/pokemon_logo.png")
-  const location = useLocation()
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   const handleClick = () => {
-    if (location.pathname === "/") window.location.reload()
+    if (pathname === "/") window.location.reload()
   }
 
   return (
