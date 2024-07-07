@@ -1,11 +1,18 @@
+import "./PokemonInfo.scss"
 import { capitalize } from "../../utils/helpers"
+import { PokemonType, Type } from "../PokemonType"
 
 type PokemonInfoContainerProps = {
   content: Object
+  types: Array<Type>
   title: String
 }
 
-function PokemonInfoContainer({ content, title }: PokemonInfoContainerProps) {
+export function PokemonInfo({
+  content,
+  title,
+  types,
+}: PokemonInfoContainerProps) {
   return (
     <div className="pokemon-info">
       <h3 className="pokemon-info__title">{title}</h3>
@@ -15,8 +22,10 @@ function PokemonInfoContainer({ content, title }: PokemonInfoContainerProps) {
           <p className="pokemon-info__content">{value}</p>
         </div>
       ))}
+      <div className="pokemon-info__container">
+        <p className="pokemon-info__subtitle">Types</p>
+        <PokemonType types={types} />
+      </div>
     </div>
   )
 }
-
-export default PokemonInfoContainer

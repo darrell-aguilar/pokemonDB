@@ -3,8 +3,7 @@ import { PokemonCard } from "../PokemonCard"
 import { SkeletonLoader } from "../SkeletonLoader"
 import { useGetPokemonQuery } from "../../utils/apiSlice"
 import { useParams } from "react-router"
-import PokemonInfoContainer from "../PokemonInfoContainer/PokemonInfoContainer"
-import { PokemonType } from "../PokemonType/PokemonType"
+import { PokemonInfo } from "../PokemonInfo"
 
 export function PokemonDetails() {
   const { id } = useParams()
@@ -14,6 +13,7 @@ export function PokemonDetails() {
 
   if (data) {
     stats = {
+      "Pokemon ID": data.id,
       height: data.height,
       weight: data.weight,
       "Base Experience": data.baseExperience,
@@ -23,8 +23,7 @@ export function PokemonDetails() {
     return (
       <div className="pokemon-details">
         <PokemonCard cardProps={data} />
-        <PokemonInfoContainer content={stats} title="Stats" />
-        <PokemonType types={data?.types} />
+        <PokemonInfo content={stats} types={data.types} title="Stats" />
       </div>
     )
   else

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import "./Nav.css"
+import "./Nav.scss"
 
 export function Nav() {
   const logo = require("../../images/pokemon_logo.png")
@@ -10,8 +10,8 @@ export function Nav() {
   }
 
   return (
-    <div className="navBar">
-      <div className="navItems">
+    <div className="nav">
+      <div className="nav__icon">
         <Link to="/">
           <img id="logo" alt="PoKemon" src={logo} onClick={handleClick}></img>
         </Link>

@@ -2,7 +2,7 @@ import { PokemonTypes } from "../../utils/constants"
 import { capitalize } from "../../utils/helpers"
 import "./PokemonType.scss"
 
-type Type = keyof typeof PokemonTypes
+export type Type = keyof typeof PokemonTypes
 
 type PokemonTypeProps = {
   types: Array<Type>
@@ -14,7 +14,6 @@ export function PokemonType({ types }: PokemonTypeProps | any) {
   }
   return (
     <div className="pokemon_type">
-      <div className="pokemon_type_title">Types</div>
       <div className="pokemon_color-container">
         {types.map((slot: any, idx: number) => (
           <div
