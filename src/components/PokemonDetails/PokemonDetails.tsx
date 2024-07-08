@@ -14,7 +14,8 @@ export function PokemonDetails() {
   if (isFetching)
     return (
       <div className="pokemon-details">
-        <SkeletonLoader width="100%" />
+        <SkeletonLoader width="250px" height="300px" />
+        <SkeletonLoader width="400px" />
       </div>
     )
   else if (!isFetching && data)

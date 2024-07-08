@@ -23,14 +23,15 @@ export function PokemonContainer() {
         threshold: 0.25,
       }
     )
+    const endOfPageRef = bottomRef
 
-    if (bottomRef.current) {
-      observer.observe(bottomRef.current)
+    if (endOfPageRef.current) {
+      observer.observe(endOfPageRef.current)
     }
 
     return () => {
-      if (bottomRef.current) {
-        observer.unobserve(bottomRef.current)
+      if (endOfPageRef.current) {
+        observer.unobserve(endOfPageRef.current)
       }
     }
   }, [])

@@ -15,3 +15,21 @@ body {
 .app {
   text-align: center;
 }
+
+@mixin sm {
+  @media screen {
+    min-width: 640px;
+  }
+}
+
+@mixin md {
+  @media screen {
+    min-width: 768px;
+  }
+}
+
+@mixin lg {
+  @media screen {
+    min-width: 1024px;
+  }
+}
