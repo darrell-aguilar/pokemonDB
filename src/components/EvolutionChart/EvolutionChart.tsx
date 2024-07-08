@@ -8,7 +8,7 @@ type Props = {
 }
 
 export function EvolutionChart({ id }: Props) {
-  const { data, isLoading } = useGetPokemonEvolutionQuery(id, {
+  const { data, isFetching } = useGetPokemonEvolutionQuery(id, {
     skip: !id,
   })
 
@@ -16,7 +16,7 @@ export function EvolutionChart({ id }: Props) {
     <div className="evolution-chart">
       <h4 className="evolution-chart__title">Evolution Chain</h4>
       <div className="evolution-chart__container">
-        {isLoading || !id ? (
+        {isFetching || !id ? (
           <SkeletonLoader count={3} />
         ) : (
           data?.map((prop) => (

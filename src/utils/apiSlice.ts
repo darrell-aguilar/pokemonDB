@@ -16,6 +16,12 @@ export const api = createApi({
       { limit: number; offset: number }
     >({
       query: ({ limit, offset }) => `/pokemon/?limit=${limit}&offset=${offset}`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName
+      },
+      merge: (current, newItems) => {
+        current.push(...newItems)
+      },
       transformResponse: (response: IPokemonList): Array<IPokemonListResult> =>
         response.results.map((result) => {
           return {
@@ -57,4 +63,5 @@ export const {
   useGetPokemonQuery,
   useGetPokemonEvolutionQuery,
   useGetPokemonSpeciesQuery,
+  useLazyGetPokemonListQuery,
 } = api

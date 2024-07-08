@@ -1,8 +1,16 @@
 .main {
-  padding: 100px 0 50px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+  &_container {
+    padding: 100px 50px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    width: 80%;
+    margin: auto;
+  }
+
+  &_bottom {
+    height: 4rem;
+  }
 }

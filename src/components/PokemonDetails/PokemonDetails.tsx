@@ -9,20 +9,20 @@ import { Stats } from "../Stats"
 export function PokemonDetails() {
   const { id } = useParams()
 
-  const { data, isSuccess } = useGetPokemonQuery(id as string)
+  const { data, isFetching } = useGetPokemonQuery(id as string)
 
-  if (isSuccess && data)
+  if (isFetching)
+    return (
+      <div className="pokemon-details">
+        <SkeletonLoader width="100%" />
+      </div>
+    )
+  else if (!isFetching && data)
     return (
       <div className="pokemon-details">
         <PokemonCard cardProps={data} />
         <PokemonInfo content={data.info} types={data.types} title="Info" />
         <Stats stats={data.stats} />
-      </div>
-    )
-  else
-    return (
-      <div className="pokemon-details">
-        <SkeletonLoader width="100%" />
       </div>
     )
 }
