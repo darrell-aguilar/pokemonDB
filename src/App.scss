@@ -17,19 +17,19 @@ body {
 }
 
 @mixin sm {
-  @media screen {
-    min-width: 640px;
+  @media (min-width: 640px) {
+    @content;
   }
 }
 
 @mixin md {
-  @media screen {
-    min-width: 768px;
+  @media (min-width: 768px) {
+    @content;
   }
 }
 
 @mixin lg {
-  @media screen {
-    min-width: 1024px;
+  @media (min-width: 1024px) {
+    @content;
   }
 }

@@ -2,21 +2,22 @@ import "./PokemonContainer.scss"
 import { useLazyGetPokemonListQuery } from "../../utils/apiSlice"
 import { PokemonCard } from "../PokemonCard"
 import { IPokemonListResult } from "../../utils/types"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
+import { LIMIT } from "../../utils/constants"
+import { Loader } from "../Loader"
 
 export function PokemonContainer() {
-  let [limit, offset] = [30, 0]
-
-  const [trigger, { data }] = useLazyGetPokemonListQuery()
-  const [isFetching, setIsFetching] = useState(false)
+  const [trigger, { data, isFetching }] = useLazyGetPokemonListQuery()
+  const limit = LIMIT
   const bottomRef = useRef(null)
 
   useEffect(() => {
+    const offset = data?.length || 0
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isFetching) {
-          setIsFetching(true)
-          fetchData()
+          trigger({ limit, offset })
         }
       },
       {
@@ -34,13 +35,7 @@ export function PokemonContainer() {
         observer.unobserve(endOfPageRef.current)
       }
     }
-  }, [])
-
-  const fetchData = () => {
-    trigger({ limit, offset })
-    offset += 30
-    setIsFetching(false)
-  }
+  }, [data, isFetching, limit, trigger])
 
   return (
     <div className="main">
@@ -51,7 +46,8 @@ export function PokemonContainer() {
             key={pokemon.name}
           />
         ))}
-      </div>
+      </div>{" "}
+      {isFetching && <Loader height="5rem" />}
       <div className="main_bottom" ref={bottomRef}></div>
     </div>
   )

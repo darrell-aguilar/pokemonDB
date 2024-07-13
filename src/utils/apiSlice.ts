@@ -19,7 +19,9 @@ export const api = createApi({
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName
       },
-      merge: (current, newItems) => {
+      merge: (current, newItems, { arg }) => {
+        const { offset } = arg
+        if (offset === 0) current = []
         current.push(...newItems)
       },
       transformResponse: (response: IPokemonList): Array<IPokemonListResult> =>

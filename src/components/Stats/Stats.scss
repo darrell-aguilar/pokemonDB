@@ -1,4 +1,11 @@
+@import "../../App.scss";
+
 .stats {
+  @include sm {
+    width: auto;
+  }
+  min-width: 250px;
+
   &_title {
     font-weight: bold;
     margin: 1rem;
@@ -6,13 +13,12 @@
 
   &_row {
     display: flex;
-    height: 3rem;
+    min-height: 3rem;
   }
 
   &_name {
     width: 50%;
     text-align: left;
-    height: 3rem;
     line-height: 3rem;
     margin: auto;
     font-size: 0.9em;
@@ -25,8 +31,11 @@
   }
 
   &_chart {
-    display: flex;
-    min-width: 300px;
+    @include sm {
+      display: flex;
+      min-width: 300px;
+    }
+    display: none;
   }
 
   &_bar {
