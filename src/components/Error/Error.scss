@@ -1,0 +1,39 @@
+@import "../../App.scss";
+
+.error {
+  &_header > * {
+    font-weight: 500;
+    color: rgb(244, 132, 132);
+  }
+
+  &_text {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 7rem;
+    color: rgb(195, 191, 191);
+
+    @include sm {
+      font-size: 15rem;
+    }
+  }
+
+  &_image {
+    width: 100px;
+
+    @include sm {
+      width: 200px;
+    }
+  }
+
+  &_pokeball {
+    width: 100%;
+  }
+
+  &_subheader > * {
+    font-weight: 500;
+    color: rgb(49, 48, 48);
+  }
+}

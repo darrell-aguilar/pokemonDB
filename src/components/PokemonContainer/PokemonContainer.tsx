@@ -5,6 +5,7 @@ import { IPokemonListResult } from "../../utils/types"
 import { useEffect, useRef } from "react"
 import { LIMIT } from "../../utils/constants"
 import { Loader } from "../Loader"
+import { Error } from "../Error"
 
 export function PokemonContainer() {
   const [trigger, { data, isFetching }] = useLazyGetPokemonListQuery()
@@ -46,7 +47,7 @@ export function PokemonContainer() {
             key={pokemon.name}
           />
         ))}
-      </div>{" "}
+      </div>
       {isFetching && <Loader height="5rem" />}
       <div className="main_bottom" ref={bottomRef}></div>
     </div>
