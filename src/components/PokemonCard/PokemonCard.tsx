@@ -20,10 +20,13 @@ export function PokemonCard({ cardProps }: Props) {
   const { name, title, id } = cardProps
 
   return (
-    <Link to={`/${name}`} className="pokemon-card">
+    <Link to={`/${name}`} data-testid="card_link" className="pokemon-card">
       <div className="pokemon-card__container">
-        <p className="pokemon-card__id">{"#" + id}</p>
+        <p data-testid="card_id" className="pokemon-card__id">
+          {"#" + id}
+        </p>
         <img
+          data-testid="card_image"
           className="pokemon-card__thumbnail"
           key={name}
           alt={name}
@@ -32,7 +35,9 @@ export function PokemonCard({ cardProps }: Props) {
           src={`${ARTWORK_URL}/${id}.png`}
         />
       </div>
-      <div className="pokemon-card__name">{title}</div>
+      <div data-testid="card_name" className="pokemon-card__name">
+        {title}
+      </div>
     </Link>
   )
 }

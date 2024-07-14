@@ -10,7 +10,7 @@
       "lib": [
         "dom",
         "dom.iterable",
-        "esnext"
+        "esnext",
       ],
       "module": "esnext",
       "moduleResolution": "node",
@@ -24,7 +24,7 @@
       "strict": true,
       "strictPropertyInitialization": true,
       "target": "ES2018",
-      "types": ["node"]
+      "types": ["node", "jest"]
     },
     "include": [
       "src",
