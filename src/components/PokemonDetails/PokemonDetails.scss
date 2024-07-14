@@ -1,38 +1,24 @@
+@import "../../App.scss";
+
 .pokemon-details {
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
   align-items: center;
   justify-content: center;
-  width: 80%;
   margin: auto;
   padding: 2rem;
+  width: auto;
 
-  &__container {
-    display: grid;
-    text-align: left;
-    margin: 1rem;
-    padding: 1rem;
-    border: solid gray;
-    border-radius: 0.5rem;
+  @include sm {
+    width: 75%;
   }
 
-  &__types {
-    display: grid;
-    gap: 1rem;
+  @include lg {
+    width: 70%;
   }
 
-  &__type {
-    padding-bottom: 1rem;
-  }
-
-  &__title {
-    color: grey;
-    padding-bottom: 0.25rem;
-    font-size: 1rem;
-  }
-
-  &__data {
-    font-size: 1.25rem;
+  @include xl {
+    width: 60%;
   }
 }
