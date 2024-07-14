@@ -7,6 +7,8 @@ on:
     types:
       - opened
       - reopened
+      - synchronize
+      - ready_for_review
 
 jobs:
   run-tests:
