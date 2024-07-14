@@ -4,15 +4,6 @@ import { useEffect, useState } from "react"
 
 export function Stats({ stats }: any) {
   useEffect(() => {
-    getHighestNumber()
-    return () => {
-      setHighestNumber(0)
-    }
-  }, [stats])
-
-  const [highestNumber, setHighestNumber] = useState(0)
-
-  const getHighestNumber = () => {
     let highestValue = 0
     stats.forEach((element: any) => {
       if (element.value > highestValue) {
@@ -20,7 +11,13 @@ export function Stats({ stats }: any) {
       }
     })
     setHighestNumber(highestValue)
-  }
+
+    return () => {
+      setHighestNumber(0)
+    }
+  }, [stats])
+
+  const [highestNumber, setHighestNumber] = useState(0)
 
   return (
     <div className="stats" key={highestNumber}>
