@@ -1,8 +1,0 @@
-name: Run Tests
-run-name: Tests for ${{github.repository}}
-on: "pull-request"
-jobs:
-  Unit Tests:
-    runs-on: ubuntu-latest
-    steps:
-      - run: ""
