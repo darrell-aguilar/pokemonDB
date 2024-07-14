@@ -1,16 +1,16 @@
 import "./PokemonDetails.scss"
 import { PokemonCard } from "../PokemonCard"
 import { SkeletonLoader } from "../SkeletonLoader"
-import { useGetPokemonQuery } from "../../utils/apiSlice"
-import { useParams } from "react-router"
 import { PokemonInfo } from "../PokemonInfo"
 import { Stats } from "../Stats"
+import { IPokemonDetails } from "../../utils/types"
 
-export function PokemonDetails() {
-  const { id } = useParams()
+type PokemonDetailsProps = {
+  data: IPokemonDetails
+  isFetching: boolean
+}
 
-  const { data, isFetching } = useGetPokemonQuery(id as string)
-
+export function PokemonDetails({ data, isFetching }: PokemonDetailsProps) {
   if (isFetching)
     return (
       <div className="pokemon-details">

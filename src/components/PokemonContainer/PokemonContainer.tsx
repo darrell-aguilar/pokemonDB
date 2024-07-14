@@ -5,7 +5,6 @@ import { IPokemonListResult } from "../../utils/types"
 import { useEffect, useRef } from "react"
 import { LIMIT } from "../../utils/constants"
 import { Loader } from "../Loader"
-import { Error } from "../Error"
 
 export function PokemonContainer() {
   const [trigger, { data, isFetching }] = useLazyGetPokemonListQuery()
@@ -41,11 +40,8 @@ export function PokemonContainer() {
   return (
     <div className="main">
       <div className="main_container">
-        {data?.map((pokemon: IPokemonListResult, index: number) => (
-          <PokemonCard
-            cardProps={{ ...pokemon, id: index + 1 }}
-            key={pokemon.name}
-          />
+        {data?.map((pokemon: IPokemonListResult) => (
+          <PokemonCard cardProps={{ ...pokemon }} key={pokemon.id} />
         ))}
       </div>
       {isFetching && <Loader height="5rem" />}

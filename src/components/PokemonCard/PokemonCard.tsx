@@ -7,9 +7,8 @@ interface Props {
 }
 interface CardProps {
   name: string
-  id: number
+  id: string
   title: string
-  fetchAll?: boolean
 }
 
 export function PokemonCard({ cardProps }: Props) {

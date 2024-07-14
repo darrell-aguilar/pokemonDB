@@ -1,5 +1,5 @@
-import { POKEMON_SPECIES_URL } from "./constants"
-import { IEvolutionChain } from "./types"
+import { ARTWORK_URL, POKEMON_SPECIES_URL, POKE_API } from "./constants"
+import { IEvolutionChain, IPokemonListResult } from "./types"
 
 export function formatEvolutionChain(
   evolutionChain: any
@@ -13,6 +13,9 @@ export function formatEvolutionChain(
         : 1,
       id: chain.species.url.replace(POKEMON_SPECIES_URL, "").slice(0, -1),
       title: capitalize(chain.species.name),
+      image: chain.species.url
+        .replace(POKEMON_SPECIES_URL, ARTWORK_URL)
+        .slice(0, -1),
       ...chain.species,
     }
 
@@ -35,4 +38,17 @@ export function formatStats(statuses: any[]) {
 export function capitalize(chars: any) {
   if (typeof chars !== "string") return chars
   return chars.charAt(0).toUpperCase() + chars.slice(1)
+}
+
+export function pokemonListResultFormatter(results: Array<IPokemonListResult>) {
+  const regexUrl = new RegExp(`${POKE_API}/pokemon/`)
+
+  return results.map((result) => {
+    const id = result.url.replace(regexUrl, "").slice(0, -1)
+    return {
+      ...result,
+      title: capitalize(result.name),
+      id,
+    }
+  })
 }

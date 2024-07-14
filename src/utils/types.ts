@@ -5,9 +5,8 @@ export interface IPokemonList {
 export interface IPokemonListResult {
   name: string
   url: string
-  id: number
+  id: string
   title: string
-  fetchAll?: boolean
 }
 
 export interface IEvolutionChain extends IPokemonListResult {

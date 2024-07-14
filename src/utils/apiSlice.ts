@@ -6,11 +6,21 @@ import {
   IEvolutionChain,
   IPokemonDetails,
 } from "../utils/types"
-import { capitalize, formatEvolutionChain, formatStats } from "../utils/helpers"
+import {
+  capitalize,
+  formatEvolutionChain,
+  formatStats,
+  pokemonListResultFormatter,
+} from "../utils/helpers"
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: POKE_API }),
   endpoints: (builder) => ({
+    getAllPokemon: builder.query<Array<IPokemonListResult>, void>({
+      query: () => `/pokemon/?limit=1025`,
+      transformResponse: (response: IPokemonList): Array<IPokemonListResult> =>
+        pokemonListResultFormatter(response.results),
+    }),
     getPokemonList: builder.query<
       Array<IPokemonListResult>,
       { limit: number; offset: number }
@@ -25,12 +35,7 @@ export const api = createApi({
         current.push(...newItems)
       },
       transformResponse: (response: IPokemonList): Array<IPokemonListResult> =>
-        response.results.map((result) => {
-          return {
-            ...result,
-            title: capitalize(result.name),
-          }
-        }),
+        pokemonListResultFormatter(response.results),
     }),
     getPokemon: builder.query<IPokemonDetails, string>({
       query: (id: string) => `/pokemon/${id}`,
@@ -66,4 +71,5 @@ export const {
   useGetPokemonEvolutionQuery,
   useGetPokemonSpeciesQuery,
   useLazyGetPokemonListQuery,
+  useGetAllPokemonQuery,
 } = api

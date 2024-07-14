@@ -6,6 +6,7 @@ import { Loader } from "./components/Loader/Loader"
 
 const Home = React.lazy(() => import("./components/Home"))
 const PokemonView = React.lazy(() => import("./components/PokemonView"))
+const Search = React.lazy(() => import("./components/Search"))
 
 export default function App(): ReactElement {
   return (
@@ -15,6 +16,7 @@ export default function App(): ReactElement {
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/:id" element={<PokemonView />} />
           </Routes>
         </div>
