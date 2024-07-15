@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import "./PokemonCard.scss"
 import { ARTWORK_URL } from "../../utils/constants"
+import * as imageMissing from "../../images/not-found.png"
 
 interface Props {
   cardProps: CardProps
@@ -12,7 +13,6 @@ interface CardProps {
 }
 
 export function PokemonCard({ cardProps }: Props) {
-  const imageMissing = require("../../images/not-found.png")
   const imageNotFound = (img: any) => {
     img.target.src = imageMissing
   }

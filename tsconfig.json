@@ -27,7 +27,7 @@
       "types": ["node", "jest"]
     },
     "include": [
-      "src",
-      "src/index.d.ts"
+      "./src",
+      "src/images.d.ts"
     ]
 }

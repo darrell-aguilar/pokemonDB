@@ -39,7 +39,7 @@ export function PokemonContainer() {
 
   return (
     <div className="main">
-      <div className="main_container">
+      <div className="main_container" data-testid="pokemon_container">
         {data?.map((pokemon: IPokemonListResult) => (
           <PokemonCard cardProps={{ ...pokemon }} key={pokemon.id} />
         ))}
