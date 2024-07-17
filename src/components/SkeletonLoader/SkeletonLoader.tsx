@@ -15,7 +15,7 @@ export function SkeletonLoader({
 
   if (count > 1) {
     return (
-      <div className="skeleton_container">
+      <div className="skeleton_container" data-testid="skeleton_loader_group">
         {Array.from(Array(count)).map((c, idx) => (
           <div className="skeleton_loader" key={idx} style={style}></div>
         ))}
@@ -23,5 +23,11 @@ export function SkeletonLoader({
     )
   }
 
-  return <div className="skeleton_loader" style={style}></div>
+  return (
+    <div
+      className="skeleton_loader"
+      data-testid="skeleton_loader"
+      style={style}
+    ></div>
+  )
 }

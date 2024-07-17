@@ -1,11 +1,15 @@
 import { capitalize } from "../../utils/helpers"
+import { IStats } from "../../utils/types"
 import "./Stats.scss"
 import { useEffect, useState } from "react"
 
-export function Stats({ stats }: any) {
+interface StatsPropType {
+  stats: IStats[]
+}
+export function Stats({ stats }: StatsPropType) {
   useEffect(() => {
     let highestValue = 0
-    stats.forEach((element: any) => {
+    stats.forEach((element: IStats) => {
       if (element.value > highestValue) {
         highestValue = element.value
       }
@@ -23,13 +27,14 @@ export function Stats({ stats }: any) {
     <div className="stats" key={highestNumber}>
       <h3 className="stats_title">Stats</h3>
       <div>
-        {stats.map((element: any) => (
-          <dl className="stats_row" key={element.name}>
+        {stats.map((element: IStats) => (
+          <dl className="stats_row" data-testid="stats_row" key={element.name}>
             <dt className="stats_name">{capitalize(element.name)}</dt>
             <dd className="stats_value">{element.value}</dd>
             <div className="stats_chart">
               <div
                 className={`stats_bar ${element.value}`}
+                data-testid="stats_bar"
                 style={{
                   maxWidth: `${(element.value / highestNumber) * 300}px`,
                 }}

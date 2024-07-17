@@ -1,10 +1,11 @@
 import "./PokemonInfo.scss"
 import { capitalize } from "../../utils/helpers"
-import { PokemonType, Type } from "../PokemonType"
+import { PokemonType } from "../PokemonType"
+import { IPokemonType } from "../../utils/types"
 
 type PokemonInfoContainerProps = {
   content: Object
-  types: Array<Type>
+  types: Array<IPokemonType>
   title: String
 }
 

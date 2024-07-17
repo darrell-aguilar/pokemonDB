@@ -9,7 +9,7 @@ import { PokemonDetails } from "../PokemonDetails/PokemonDetails"
 import { IPokemonDetails } from "../../utils/types"
 import { Error } from "../Error"
 
-export function PokemonView(props: any) {
+export function PokemonView() {
   const { id } = useParams()
 
   const { data: pokemonSpecies, error: pokemonSpeciesError } =

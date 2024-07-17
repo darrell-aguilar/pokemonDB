@@ -6,7 +6,7 @@ import { Stats } from "../Stats"
 import { IPokemonDetails } from "../../utils/types"
 
 type PokemonDetailsProps = {
-  data: IPokemonDetails
+  data: IPokemonDetails | undefined
   isFetching: boolean
 }
 

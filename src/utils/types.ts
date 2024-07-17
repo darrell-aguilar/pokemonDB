@@ -1,3 +1,5 @@
+import { PokemonTypes } from "./constants"
+
 export interface IPokemonList {
   results: Array<IPokemonListResult>
 }
@@ -14,9 +16,17 @@ export interface IEvolutionChain extends IPokemonListResult {
 }
 
 export interface IPokemonDetails extends Omit<IEvolutionChain, "url"> {
-  types: Array<any>
+  types: Array<IPokemonType>
   info: IPokemonInfo
   stats: Array<IStats>
+}
+
+export interface IPokemonType {
+  type: ITypeObject
+}
+
+interface ITypeObject {
+  name: keyof typeof PokemonTypes
 }
 
 interface IPokemonInfo {
@@ -26,6 +36,9 @@ interface IPokemonInfo {
   id: number
 }
 
-interface IStats {
-  [key: string]: number
+export interface IStats {
+  name: string
+  value: number
 }
+
+export type Type = keyof typeof PokemonTypes

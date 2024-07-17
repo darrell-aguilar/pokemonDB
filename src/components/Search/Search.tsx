@@ -29,7 +29,7 @@ export function Search() {
         setLoading(false)
       }, 500)
     } else setPokemonResult(null)
-  }, [searchValue, data, pokemonResult])
+  }, [searchValue, data])
 
   if (isFetching) {
     return <Loader />

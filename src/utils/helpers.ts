@@ -1,5 +1,5 @@
 import { ARTWORK_URL, POKEMON_SPECIES_URL, POKE_API } from "./constants"
-import { IEvolutionChain, IPokemonListResult } from "./types"
+import { IEvolutionChain, IPokemonListResult, IStats } from "./types"
 
 export function formatEvolutionChain(
   evolutionChain: any
@@ -26,7 +26,7 @@ export function formatEvolutionChain(
   return evolution
 }
 
-export function formatStats(statuses: any[]) {
+export function formatStats(statuses: any[]): IStats[] {
   return statuses.map((status) => {
     return {
       name: status.stat.name,
@@ -35,7 +35,7 @@ export function formatStats(statuses: any[]) {
   })
 }
 
-export function capitalize(chars: any) {
+export function capitalize<T>(chars: T): T | string {
   if (typeof chars !== "string") return chars
   return chars.charAt(0).toUpperCase() + chars.slice(1)
 }
