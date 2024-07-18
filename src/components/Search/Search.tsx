@@ -15,10 +15,14 @@ export function Search() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (searchValue.length > 2) {
-      if (!pokemonResult) {
-        setLoading(true)
+    function filterPokemonList() {
+      if (searchValue.length < 3) {
+        setPokemonResult(null)
+        return
       }
+
+      setLoading(true)
+
       const filteredList = data?.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(searchValue.toLowerCase())
       )
@@ -28,7 +32,9 @@ export function Search() {
       setTimeout(() => {
         setLoading(false)
       }, 500)
-    } else setPokemonResult(null)
+    }
+
+    filterPokemonList()
   }, [searchValue, data])
 
   if (isFetching) {
