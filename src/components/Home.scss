@@ -1,7 +1,9 @@
+@import "../styles/variables";
+
 .search {
   &_button {
     padding: 1rem;
-    border: 1px solid rgb(234, 229, 229);
+    border: 1px solid $border-grey;
     border-radius: 4px;
     margin-bottom: 3rem;
     cursor: pointer;
