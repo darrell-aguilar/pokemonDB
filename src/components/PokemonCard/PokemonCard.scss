@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .pokemon-card {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
   height: 300px;
   border-style: solid;
   border-radius: 20px;
-  border-color: rgba(226, 221, 221, 0.726);
+  border-color: $border-grey;
   text-decoration: none;
   color: black;
 
@@ -13,7 +15,7 @@
     border-radius: 20px 20px 0 0;
     display: block;
     width: 100%;
-    background-color: rgb(182, 182, 182, 0.2);
+    background-color: $background-grey;
     padding-bottom: 24px;
   }
 

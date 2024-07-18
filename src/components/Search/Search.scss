@@ -1,11 +1,13 @@
 @import "../../App.scss";
+@import "../../styles/variables.scss";
 
 .search {
   width: 90%;
   margin: auto;
-  background-color: rgb(182, 182, 182, 0.2);
+  background-color: $background-grey;
   padding: 2rem 0.5rem;
   height: 500px;
+  border-radius: 5px;
 
   @include sm {
     width: 60%;
@@ -19,6 +21,8 @@
     padding: 0.5rem;
     width: 80%;
     margin-bottom: 2rem;
+    border: 1px solid $dark-grey;
+    border-radius: 5px;
 
     @include sm {
       width: 300px;
@@ -45,8 +49,9 @@
 
   &_item {
     display: flex;
-    width: 100%;
-    border-bottom: 1px solid rgba(130, 129, 129, 0.2);
+    width: 70%;
+    border-bottom: 1px solid $dark-grey;
+    margin: auto;
     padding: 0.5rem;
     cursor: pointer;
     color: black;
