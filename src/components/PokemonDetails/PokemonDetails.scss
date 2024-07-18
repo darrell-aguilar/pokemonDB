@@ -1,0 +1,24 @@
+@import "../../App.scss";
+
+.pokemon-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 2rem;
+  width: auto;
+
+  @include sm {
+    width: 75%;
+  }
+
+  @include lg {
+    width: 70%;
+  }
+
+  @include xl {
+    width: 60%;
+  }
+}

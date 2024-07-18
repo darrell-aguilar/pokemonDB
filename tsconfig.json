@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "alwaysStrict": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "isolatedModules": true,
+      "jsx": "react-jsx",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext",
+      ],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "noEmit": true,
+      "plugins": [{
+        "name": "typescript-styled-plugin",
+        "validate": false
+      }],
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "strictPropertyInitialization": true,
+      "target": "ES2018",
+      "types": ["node", "jest"]
+    },
+    "include": [
+      "./src",
+      "src/images.d.ts"
+    ]
+}

@@ -1,0 +1,19 @@
+.pokemon {
+  &_color {
+    width: 6rem;
+    height: 2rem;
+    line-height: 2rem;
+    color: white;
+    border-radius: 8px;
+
+    &-container {
+      display: flex;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+
+  &_text {
+    margin: auto;
+  }
+}

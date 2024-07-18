@@ -1,0 +1,65 @@
+@import "../../App.scss";
+
+.stats {
+  @include sm {
+    width: auto;
+  }
+  min-width: 250px;
+
+  &_title {
+    font-weight: bold;
+    margin: 1rem;
+  }
+
+  &_row {
+    display: flex;
+    min-height: 3rem;
+  }
+
+  &_name {
+    width: 50%;
+    text-align: left;
+    line-height: 3rem;
+    margin: auto;
+    font-size: 0.9em;
+  }
+
+  &_value {
+    margin: 0 20px;
+    height: 3rem;
+    line-height: 3rem;
+  }
+
+  &_chart {
+    @include sm {
+      display: flex;
+      min-width: 300px;
+    }
+    display: none;
+  }
+
+  &_bar {
+    display: flex;
+    justify-content: left;
+    padding: 0;
+    background-position: 0px 0px;
+    background-image: linear-gradient(
+      to right,
+      rgb(236, 43, 43),
+      rgb(247, 190, 86)
+    );
+    margin: 0.25rem 0;
+    width: 300px;
+    animation: animate-bar 0.6s ease-in;
+  }
+
+  @keyframes animate-bar {
+    from {
+      width: 0%;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+}

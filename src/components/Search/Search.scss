@@ -1,0 +1,68 @@
+@import "../../App.scss";
+
+.search {
+  width: 90%;
+  margin: auto;
+  background-color: rgb(182, 182, 182, 0.2);
+  padding: 2rem 0.5rem;
+  height: 500px;
+
+  @include sm {
+    width: 60%;
+  }
+
+  &_link--hidden {
+    display: none;
+  }
+
+  &_input {
+    padding: 0.5rem;
+    width: 80%;
+    margin-bottom: 2rem;
+
+    @include sm {
+      width: 300px;
+    }
+  }
+
+  &_result {
+    margin: auto;
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: left;
+    width: 90%;
+    padding-top: 1rem;
+
+    @include sm {
+      width: 350px;
+    }
+
+    & > * {
+      text-decoration: none;
+    }
+  }
+
+  &_item {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(130, 129, 129, 0.2);
+    padding: 0.5rem;
+    cursor: pointer;
+    color: black;
+
+    @include sm {
+      padding: 0.5rem 0 0.5rem 2rem;
+    }
+  }
+
+  &_image {
+    max-height: 3rem;
+  }
+
+  &_name {
+    padding-left: 2rem;
+    word-wrap: break-word;
+    line-height: 3rem;
+  }
+}
